@@ -10,30 +10,25 @@ export async function POST(request: NextRequest) {
   const sentData: FormData = await request.formData();
   const songLyrics = sentData.get("songLyrics");
   const identifier = "ADmCby4J";
-  const badWordsArray = ["bad", "evil"];
+  const badWordsArray = ["gimmie top", "top", "give me top"];
 
   try {
-    // console.log("x", data.toolImage);
-    // console.log(sentData.songLyrics);
     const result: string = clean(songLyrics, {
+      exceptions: ["fun"],
       customBadWords: badWordsArray,
       customReplacement: (badWord: string) => {
-        return ` ${identifier} ${badWord} ${identifier} `;
+        return ` ${identifier} ${badWord}`;
       },
     });
-    const curseWords = identifierOccurrences(result, identifier);
-    // console.log(result);
-    console.log(`curseWords: ${curseWords}`);
 
+    let words = result.split(" ");
+    const processedSongLyrics = identifierOccurrences(words, identifier);
+    // console.log(`processedSongLyrics: ${processedSongLyrics}`);
     return NextResponse.json({
-      curseWords: curseWords,
+      curseWords: processedSongLyrics,
       data: result,
     });
   } catch (err) {
     console.log(err);
   }
-
-  return NextResponse.json({
-    data: sentData,
-  });
 }
