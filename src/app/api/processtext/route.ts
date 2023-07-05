@@ -10,7 +10,23 @@ export async function POST(request: NextRequest) {
   const sentData: FormData = await request.formData();
   const songLyrics = sentData.get("songLyrics");
   const identifier = "ADmCby4J";
-  const badWordsArray = ["gimmie top", "top", "give me top"];
+  const badWordsArray = [
+    "gimmie top",
+    "top",
+    "give me top",
+    "drink",
+    "champaign",
+    "vodka",
+    "rum",
+    "beer",
+    "drinks",
+    "pills",
+    "molly",
+    "smoke",
+    "high",
+    "drunk",
+    "alchohol",
+  ];
 
   try {
     const result: string = clean(songLyrics, {
