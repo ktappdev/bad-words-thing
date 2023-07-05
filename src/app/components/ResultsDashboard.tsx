@@ -25,7 +25,7 @@ const ResultsDashboard = () => {
 
   console.log(songInfo);
   if (songInfo.curseWords.count === 0) {
-    return <div>You didn't search lyrics</div>;
+    return <div>You did not search lyrics</div>;
   }
 
   return (
