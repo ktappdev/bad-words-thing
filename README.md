@@ -1,3 +1,7 @@
+
+Due to my extensive exposure to hip hop music throughout my life, I have become desensitized to curse words. As a result, I am developing an application that scans song lyrics and identifies a comprehensive list of offensive language. This way, I can avoid playing an entire song only to discover that it does not contain any inappropriate content while editing songs for our radio station.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

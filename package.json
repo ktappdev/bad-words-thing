@@ -2,6 +2,7 @@
   "name": "bad-words-thing",
   "version": "0.1.0",
   "private": true,
+  "description": "My lifelong immersion in hip hop has desensitized me to curse words. Creating an app that scans lyrics for offensive language, I can save time by avoiding songs without inappropriate content while editing for our radio station.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,6 +14,7 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
+    "bad-words": "^3.0.4",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
     "next": "13.4.8",
