@@ -109,4 +109,7 @@ export const badWordsArray = [
   "Bloody Mary",
   "Pina Colada",
   "White Russian",
+  "blaze",
+  "blazing",
+  "blazin",
 ];
