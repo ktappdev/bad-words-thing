@@ -68,28 +68,30 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div className="container h-full w-full mx-auto p-4">
+    <div className="container mx-auto p-4">
       <form className="mb-4" onSubmit={handleTextInputSubmit}>
-        <label className="block mb-2">Text Input:</label>
+        <label className="block mb-2 font-bold text-gray-700">
+          Text Input:
+        </label>
         <input
           disabled={disableButton}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"
           type="text"
           value={textInput}
           onChange={handleTextInputChange}
         />
         <button
           disabled={disableButton}
-          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
         >
           {buttonText}
         </button>
       </form>
       <form className="mb-4" onSubmit={handleTextAreaSubmit}>
-        <label className="block mb-2">Text Area:</label>
+        <label className="block mb-2 font-bold text-gray-700">Text Area:</label>
         <textarea
           disabled={disableButton}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"
           rows={4}
           value={textAreaInput}
           onChange={handleTextAreaInputChange}
@@ -97,12 +99,12 @@ const Main: React.FC = () => {
         <div className="mt-2 space-x-2">
           <button
             disabled={disableButton}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
           >
             {buttonText}
           </button>
           <button
-            className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
+            className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 focus:bg-gray-400"
             onClick={handleTextAreaClear}
             disabled={disableButton}
           >

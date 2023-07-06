@@ -21,7 +21,7 @@ export default function identifierOccurrences(
       linesToEdit: linesToEdit,
     };
   }
-  console.log(linesToEdit);
+  
   return {
     count: count,
     linesToEdit: linesToEdit,

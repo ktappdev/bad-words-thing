@@ -1,6 +1,6 @@
 // Importing necessary modules and packages
 import { NextResponse, NextRequest } from "next/server";
-import { getLyrics } from "genius-lyrics-api";
+import { getLyrics, getSong } from "genius-lyrics-api";
 
 interface sentData {
   textInput: string;
@@ -18,6 +18,8 @@ export async function POST(request: NextRequest) {
 
   try {
     let lyrics = await getLyrics(options);
+    console.log('lyrics: ', lyrics);
+    
     return NextResponse.json({
       songLyrics: lyrics,
     });

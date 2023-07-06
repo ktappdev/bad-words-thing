@@ -12,12 +12,10 @@ interface singInfo {
 }
 
 const ResultsDashboard = () => {
-  
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [checkedLines, setCheckedLines] = useState(
     new Array(songInfo.curseWords.linesToEdit.length).fill(false)
   );
-  
 
   if (songInfo.curseWords.count === 0) {
     return <div>The song is clean or you did not provide lyrics</div>;
@@ -33,7 +31,7 @@ const ResultsDashboard = () => {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="container mx-auto p-4">
         <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">Song details</h2>
+          <h2 className="text-2xl font-bold mb-4">Song Details</h2>
           <div>
             <h3 className="text-lg font-bold mb-2">Number of Profanity:</h3>
             <p>{songInfo.curseWords.count}</p>
@@ -45,7 +43,7 @@ const ResultsDashboard = () => {
               {songInfo.curseWords.linesToEdit.map((lyric, index) => (
                 <li
                   key={index}
-                  className="flex items-center mb-2 border-2 border-gray-200 px-2 rounded"
+                  className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1"
                 >
                   <input
                     type="checkbox"
