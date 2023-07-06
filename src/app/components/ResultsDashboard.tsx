@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { songAtom, songData } from "../store/store";
 import { ISong } from "../utils/interfaces";
 import Image from "next/image";
+import Link from "next/link";
 interface singInfo {
   curseWords: {
     count: number;
@@ -28,7 +29,6 @@ const ResultsDashboard = () => {
     newCheckedLines[index] = !newCheckedLines[index];
     setCheckedLines(newCheckedLines);
   };
-  
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -45,6 +45,15 @@ const ResultsDashboard = () => {
                   Number of Profanities:
                 </h3>
                 <p>{songInfo.curseWords.count}</p>
+              </div>
+              <div>
+                <Link
+                  href={song_Atom?.url!}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Lyrics
+                </Link>
               </div>
             </div>
             <div>
