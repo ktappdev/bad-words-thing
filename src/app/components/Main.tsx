@@ -7,6 +7,7 @@ import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ISong } from "../utils/interfaces";
+import SmallLoadingSpinner from "./LoadingSpinner";
 
 interface IResponse {
   data: {
@@ -74,11 +75,16 @@ const Main: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <div className="flex gap-2 text-sm text-gray-500">
+        <p>For best results use the format:</p>
+        <p className=" font-semibold">Artist Name - Song Title</p>
+      </div>
       <form className="mb-4" onSubmit={handleTextInputSubmit}>
         <label className="block mb-2 font-bold text-gray-700">
-          Text Input:
+          Song Search:
         </label>
         <input
+          placeholder="Artist Name - Song Title"
           disabled={disableButton}
           className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"
           type="text"
@@ -90,10 +96,13 @@ const Main: React.FC = () => {
           className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
         >
           {buttonText}
+          {/* <SmallLoadingSpinner /> */}
         </button>
       </form>
       <form className="mb-4" onSubmit={handleTextAreaSubmit}>
-        <label className="block mb-2 font-bold text-gray-700">Text Area:</label>
+        <label className="block mb-2 font-bold text-gray-700">
+          Paste lyrics here:
+        </label>
         <textarea
           disabled={disableButton}
           className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"

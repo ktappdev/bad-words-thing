@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
   try {
     let song: ISong = await getSong(options);
-    console.log("Song: ", song);
+    
 
     return NextResponse.json({
       songLyrics: song.lyrics,
