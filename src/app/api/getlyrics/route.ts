@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       songLyrics: lyrics,
     });
   } catch (error) {
-    console.log(error);
+    ;
     return NextResponse.json({
       error: error,
     });

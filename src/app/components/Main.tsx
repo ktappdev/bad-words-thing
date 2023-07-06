@@ -32,28 +32,19 @@ const Main: React.FC = () => {
   const handleTextInputSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log(1);
       const response: IResponse = await axios.post("/api/getlyrics", {
         textInput,
       });
-      console.log(2);
       setLyricsAtom(response.data.songLyrics);
 
       let lyrics = response.data.songLyrics;
-      console.log(lyrics);
       const processedResponse = await axios.post("/api/processtext", {
         lyrics,
       });
-      console.log(3);
-      console.log(processedResponse.data);
       let res = processedResponse.data as unknown as ISongInfo;
-      console.log(4);
       setSongInfo(res);
-      console.log(5);
       router.push("/results");
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   };
 
   const handleTextAreaSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -62,11 +53,9 @@ const Main: React.FC = () => {
       const response = await axios.post("/api/processtext", { textAreaInput });
       let res = response.data as ISongInfo;
       setSongInfo(res);
-      //   console.log("Text Area Input:", response.data);
+      //   ;
       router.push("/results");
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   };
 
   const handleTextAreaClear = () => {

@@ -8,7 +8,6 @@ interface sentData {
 }
 export async function POST(request: NextRequest) {
   const sentData: sentData = await request.json();
-  console.log(sentData);
   const identifier = "ADmCby4J";
   const badWordsArray = [
     "gimmie top",
@@ -41,12 +40,10 @@ export async function POST(request: NextRequest) {
 
     let words = result.split(" ");
     const processedSongLyrics = identifierOccurrences(words, identifier);
-    // console.log(`processedSongLyrics: ${processedSongLyrics}`);
+    // ;
     return NextResponse.json({
       curseWords: processedSongLyrics,
       data: result,
     });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
