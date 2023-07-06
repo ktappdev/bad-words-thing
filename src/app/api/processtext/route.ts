@@ -27,6 +27,10 @@ export async function POST(request: NextRequest) {
     "alchohol",
     "dead",
     "matic",
+    "pop",
+    "bottles",
+    "bottle",
+    "poppin",
   ];
 
   try {
