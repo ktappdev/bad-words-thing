@@ -19,6 +19,8 @@ const Main: React.FC = () => {
   const [textAreaInput, setTextAreaInput] = useState("");
   const [songInfo, setSongInfo] = useAtom(songData);
   const [lyricsAton, setLyricsAtom] = useAtom(lyricsAtom);
+  const [disableButton, setDisableButton] = useState<boolean>(false);
+  const [buttonText, setButtonText] = useState<string>("Submit");
 
   const handleTextInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTextInput(e.target.value);
@@ -32,6 +34,8 @@ const Main: React.FC = () => {
 
   const handleTextInputSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setDisableButton(true);
+    setButtonText("Please Wait...");
     try {
       const response: IResponse = await axios.post("/api/getlyrics", {
         textInput,
@@ -68,30 +72,39 @@ const Main: React.FC = () => {
       <form className="mb-4" onSubmit={handleTextInputSubmit}>
         <label className="block mb-2">Text Input:</label>
         <input
+          disabled={disableButton}
           className="w-full p-2 border border-gray-300 rounded"
           type="text"
           value={textInput}
           onChange={handleTextInputChange}
         />
-        <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">
-          Submit
+        <button
+          disabled={disableButton}
+          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          {buttonText}
         </button>
       </form>
       <form className="mb-4" onSubmit={handleTextAreaSubmit}>
         <label className="block mb-2">Text Area:</label>
         <textarea
+          disabled={disableButton}
           className="w-full p-2 border border-gray-300 rounded"
           rows={4}
           value={textAreaInput}
           onChange={handleTextAreaInputChange}
         ></textarea>
         <div className="mt-2 space-x-2">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
-            Submit
+          <button
+            disabled={disableButton}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            {buttonText}
           </button>
           <button
             className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
             onClick={handleTextAreaClear}
+            disabled={disableButton}
           >
             Clear
           </button>

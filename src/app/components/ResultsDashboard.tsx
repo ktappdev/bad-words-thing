@@ -12,10 +12,12 @@ interface singInfo {
 }
 
 const ResultsDashboard = () => {
+  
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [checkedLines, setCheckedLines] = useState(
     new Array(songInfo.curseWords.linesToEdit.length).fill(false)
   );
+  
 
   if (songInfo.curseWords.count === 0) {
     return <div>The song is clean or you did not provide lyrics</div>;
