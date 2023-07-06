@@ -17,6 +17,7 @@
     "axios": "^1.4.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
+    "genius-lyrics-api": "^3.2.0",
     "jotai": "^2.2.1",
     "next": "13.4.8",
     "postcss": "8.4.24",

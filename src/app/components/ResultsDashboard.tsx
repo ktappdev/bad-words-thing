@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { songData } from "../store/store";
 
+
 interface singInfo {
   curseWords: {
     count: number;
@@ -12,6 +13,10 @@ interface singInfo {
 
 const ResultsDashboard = () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
+
+  if (songInfo.curseWords.count === 0) {
+    return <div>The song is clean or you did not provide lyrics</div>;
+  }
 
   const [checkedLines, setCheckedLines] = useState(
     new Array(songInfo.curseWords.linesToEdit.length).fill(false)
@@ -24,9 +29,7 @@ const ResultsDashboard = () => {
   };
 
   console.log(songInfo);
-  if (songInfo.curseWords.count === 0) {
-    return <div>You did not search lyrics</div>;
-  }
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
