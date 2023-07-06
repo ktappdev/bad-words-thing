@@ -28,7 +28,7 @@ const ResultsDashboard = () => {
     newCheckedLines[index] = !newCheckedLines[index];
     setCheckedLines(newCheckedLines);
   };
-  console.log("all the info in the song atom", song_Atom);
+  
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">

@@ -2,6 +2,7 @@
 import { clean } from "profanity-cleaner";
 import { NextResponse, NextRequest } from "next/server";
 import identifierOccurrences from "@/app/utils/identifierOccurrences";
+import { badWordsArray } from "@/app/utils/badWords";
 interface sentData {
   textAreaInput?: string;
   lyrics?: string;
@@ -9,29 +10,6 @@ interface sentData {
 export async function POST(request: NextRequest) {
   const sentData: sentData = await request.json();
   const identifier = "ADmCby4J";
-  const badWordsArray = [
-    "gimmie top",
-    "top",
-    "give me top",
-    "drink",
-    "champaign",
-    "vodka",
-    "rum",
-    "beer",
-    "drinks",
-    "pills",
-    "molly",
-    "smoke",
-    "high",
-    "drunk",
-    "alchohol",
-    "dead",
-    "matic",
-    "pop",
-    "bottles",
-    "bottle",
-    "poppin",
-  ];
 
   try {
     const result: string = clean(sentData.textAreaInput || sentData.lyrics, {
