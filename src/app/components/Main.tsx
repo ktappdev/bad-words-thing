@@ -10,6 +10,7 @@ import axios from "axios";
 interface IResponse {
   data: {
     songLyrics: string;
+    error?: string;
   };
 }
 const Main: React.FC = () => {
@@ -63,7 +64,7 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container h-full w-full mx-auto p-4">
       <form className="mb-4" onSubmit={handleTextInputSubmit}>
         <label className="block mb-2">Text Input:</label>
         <input

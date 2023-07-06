@@ -8,6 +8,7 @@ interface singInfo {
     count: number;
     linesToEdit: string[];
   };
+  error?: string;
 }
 
 const ResultsDashboard = () => {
@@ -25,7 +26,6 @@ const ResultsDashboard = () => {
     newCheckedLines[index] = !newCheckedLines[index];
     setCheckedLines(newCheckedLines);
   };
-
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">

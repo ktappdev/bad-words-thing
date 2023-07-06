@@ -4,7 +4,7 @@ import Main from "./components/Main";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen w-full flex-col items-center justify-center md:max-w-4xl mx-auto">
       <Main />
     </main>
   );

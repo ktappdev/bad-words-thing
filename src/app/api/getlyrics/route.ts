@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
       songLyrics: lyrics,
     });
   } catch (error) {
-    ;
     return NextResponse.json({
       error: error,
+      songLyrics: null,
     });
   }
 }

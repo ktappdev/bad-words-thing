@@ -45,5 +45,11 @@ export async function POST(request: NextRequest) {
       curseWords: processedSongLyrics,
       data: result,
     });
-  } catch (err) {}
+  } catch (err) {
+    return NextResponse.json({
+      curseWords: 0,
+      data: null,
+      error: err,
+    });
+  }
 }
