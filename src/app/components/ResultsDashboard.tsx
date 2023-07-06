@@ -41,12 +41,13 @@ const ResultsDashboard = () => {
             <div>
               <h2 className="text-2xl font-bold mb-4">{song_Atom?.title}</h2>
               <div>
-                <h3 className="text-lg font-bold mb-2">Number of Profanity:</h3>
+                <h3 className="text-lg font-bold mb-2">
+                  Number of Profanities:
+                </h3>
                 <p>{songInfo.curseWords.count}</p>
               </div>
             </div>
             <div>
-
               <Image
                 src={song_Atom?.albumArt!}
                 alt="album art"
@@ -57,7 +58,7 @@ const ResultsDashboard = () => {
           </div>
 
           <div className="mb-4">
-            <h3 className="text-lg font-bold mb-2">Song Lyrics to Edit:</h3>
+            <h3 className="text-lg font-bold mb-2">Bad lyrics to edit:</h3>
             <ul>
               {songInfo.curseWords.linesToEdit.map((lyric, index) => (
                 <li
