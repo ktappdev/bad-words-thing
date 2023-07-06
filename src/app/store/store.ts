@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { ISong } from "../utils/interfaces";
 
 export interface ISongInfo {
   curseWords: {
@@ -13,4 +14,7 @@ export const songData = atom<ISongInfo>({
     linesToEdit: [],
   },
 });
+
 export const lyricsAtom = atom<string>("");
+
+export const songAtom = atom<ISong | null>(null)

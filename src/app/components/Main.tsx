@@ -1,16 +1,18 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useAtom } from "jotai";
-import { songData } from "../store/store";
+import { songAtom, songData } from "../store/store";
 import { lyricsAtom } from "../store/store";
 import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { ISong } from "../utils/interfaces";
 
 interface IResponse {
   data: {
     songLyrics: string;
     error?: string;
+    song: ISong;
   };
 }
 const Main: React.FC = () => {
@@ -18,7 +20,8 @@ const Main: React.FC = () => {
   const [textInput, setTextInput] = useState("");
   const [textAreaInput, setTextAreaInput] = useState("");
   const [songInfo, setSongInfo] = useAtom(songData);
-  const [lyricsAton, setLyricsAtom] = useAtom(lyricsAtom);
+  const [lyrics_Atom, setLyricsAtom] = useAtom(lyricsAtom);
+  const [song_Atom, setSongAtom] = useAtom(songAtom);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>("Submit");
 
@@ -43,6 +46,8 @@ const Main: React.FC = () => {
       setLyricsAtom(response.data.songLyrics);
 
       let lyrics = response.data.songLyrics;
+      let song = response.data.song;
+      setSongAtom(song);
       const processedResponse = await axios.post("/api/processtext", {
         lyrics,
       });
