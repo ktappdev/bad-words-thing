@@ -16,19 +16,11 @@ interface singInfo {
 const ResultsDashboard = () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
-  const [checkedLines, setCheckedLines] = useState(
-    new Array(songInfo.curseWords.linesToEdit.length).fill(false)
-  );
 
   if (songInfo.curseWords.count === 0) {
     return <div>The song is clean or you did not provide lyrics</div>;
   }
 
-  const handleCheckboxChange = (index: number) => {
-    const newCheckedLines = [...checkedLines];
-    newCheckedLines[index] = !newCheckedLines[index];
-    setCheckedLines(newCheckedLines);
-  };
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -74,12 +66,7 @@ const ResultsDashboard = () => {
                   key={index}
                   className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1"
                 >
-                  <input
-                    type="checkbox"
-                    checked={checkedLines[index]}
-                    onChange={() => handleCheckboxChange(index)}
-                    className="mr-2"
-                  />
+                  <span className="mr-2">10%</span>
                   <span>{lyric}</span>
                 </li>
               ))}
