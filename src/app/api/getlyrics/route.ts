@@ -1,5 +1,7 @@
 // Importing necessary modules and packages
 import { NextResponse, NextRequest } from "next/server";
+import { removeSquareBrackets } from "@/app/utils/removeSquareBrackets";
+import { wordCount } from "@/app/utils/wordCount";
 import { getLyrics, getSong } from "genius-lyrics-api";
 import { ISong } from "@/app/utils/interfaces";
 interface sentData {
@@ -18,11 +20,13 @@ export async function POST(request: NextRequest) {
 
   try {
     let song: ISong = await getSong(options);
-    
-
+    const editLyrics = removeSquareBrackets(song.lyrics);
+    const lyricsWordCount = wordCount(editLyrics);
+    console.log(lyricsWordCount);
     return NextResponse.json({
       songLyrics: song.lyrics,
       song: song,
+      wordCount: lyricsWordCount,
     });
   } catch (error) {
     return NextResponse.json({

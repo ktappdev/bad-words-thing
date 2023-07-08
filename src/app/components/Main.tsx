@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useAtom } from "jotai";
-import { songAtom, songData } from "../store/store";
+import { songAtom, songData, wordCountAtom } from "../store/store";
 import { lyricsAtom } from "../store/store";
 import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
@@ -13,6 +13,7 @@ interface IResponse {
     songLyrics: string;
     error?: string;
     song: ISong;
+    wordCount: number;
   };
 }
 const Main: React.FC = () => {
@@ -21,6 +22,7 @@ const Main: React.FC = () => {
   const [textAreaInput, setTextAreaInput] = useState("");
   const [songInfo, setSongInfo] = useAtom(songData);
   const [lyrics_Atom, setLyricsAtom] = useAtom(lyricsAtom);
+  const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
   const [song_Atom, setSongAtom] = useAtom(songAtom);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>("Submit");
@@ -44,6 +46,7 @@ const Main: React.FC = () => {
         textInput,
       });
       setLyricsAtom(response.data.songLyrics);
+      setWordCountAtom(response.data.wordCount);
 
       let lyrics = response.data.songLyrics;
       let song = response.data.song;
