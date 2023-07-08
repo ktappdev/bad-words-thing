@@ -112,4 +112,6 @@ export const badWordsArray = [
   "blaze",
   "blazing",
   "blazin",
+  "glock",
+  "k",
 ];
