@@ -10,11 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model YellowList {
+
+model BadWordList {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  yellowWord    String
-}
-model RedList {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  redWord    String
+  word    String
+  colour String? 
 }
