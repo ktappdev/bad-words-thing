@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useAtom } from "jotai";
-import { songAtom, songData } from "../store/store";
+import { songAtom, songData, wordCountAtom } from "../store/store";
 import { ISong } from "../utils/interfaces";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,19 +16,11 @@ interface singInfo {
 const ResultsDashboard = () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
-  const [checkedLines, setCheckedLines] = useState(
-    new Array(songInfo.curseWords.linesToEdit.length).fill(false)
-  );
+  const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
 
   if (songInfo.curseWords.count === 0) {
     return <div>The song is clean or you did not provide lyrics</div>;
   }
-
-  const handleCheckboxChange = (index: number) => {
-    const newCheckedLines = [...checkedLines];
-    newCheckedLines[index] = !newCheckedLines[index];
-    setCheckedLines(newCheckedLines);
-  };
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -45,6 +37,10 @@ const ResultsDashboard = () => {
                   Number of Profanities:
                 </h3>
                 <p>{songInfo.curseWords.count}</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-2">Word count:</h3>
+                <p>{wordCount_Atom}</p>
               </div>
               <div>
                 <Link
@@ -74,12 +70,7 @@ const ResultsDashboard = () => {
                   key={index}
                   className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1"
                 >
-                  <input
-                    type="checkbox"
-                    checked={checkedLines[index]}
-                    onChange={() => handleCheckboxChange(index)}
-                    className="mr-2"
-                  />
+                  <span className="mr-2">10%</span>
                   <span>{lyric}</span>
                 </li>
               ))}

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useAtom } from "jotai";
-import { songAtom, songData } from "../store/store";
+import { songAtom, songData, wordCountAtom } from "../store/store";
 import { lyricsAtom } from "../store/store";
 import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
@@ -13,6 +13,7 @@ interface IResponse {
     songLyrics: string;
     error?: string;
     song: ISong;
+    wordCount: number;
   };
 }
 const Main: React.FC = () => {
@@ -21,6 +22,7 @@ const Main: React.FC = () => {
   const [textAreaInput, setTextAreaInput] = useState("");
   const [songInfo, setSongInfo] = useAtom(songData);
   const [lyrics_Atom, setLyricsAtom] = useAtom(lyricsAtom);
+  const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
   const [song_Atom, setSongAtom] = useAtom(songAtom);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>("Submit");
@@ -44,6 +46,8 @@ const Main: React.FC = () => {
         textInput,
       });
       setLyricsAtom(response.data.songLyrics);
+      setWordCountAtom(response.data.wordCount);
+      // console.log(response.data);
 
       let lyrics = response.data.songLyrics;
       let song = response.data.song;
@@ -75,8 +79,8 @@ const Main: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-center">
-        <p className=" text-2xl font-extrabold text-red-500 mb-4 ">
-          Bad Words Thing
+        <p className=" text-2xl font-extrabold text-gray-600 mb-4 ">
+          [bad words thing]
         </p>
       </div>
 
@@ -102,9 +106,10 @@ const Main: React.FC = () => {
       </form>
       <form className="mb-4" onSubmit={handleTextAreaSubmit}>
         <label className="block mb-2 font-bold text-gray-700">
-          Paste lyrics here:
+          Update Bad Words List:
         </label>
         <textarea
+          placeholder="Seperate words by comma or newline"
           disabled={disableButton}
           className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"
           rows={4}
@@ -127,6 +132,11 @@ const Main: React.FC = () => {
           </button>
         </div>
       </form>
+      <div className="flex flex-col justify-center overflow-scrol border-2">
+        <p className="text-gray-800 text-lg text-center">Report</p>
+        <p className="text-green-500 text-center">7 new words added</p>
+        <p className="text-red-500 text-center">3 duplicates not added</p>
+      </div>
     </div>
   );
 };
