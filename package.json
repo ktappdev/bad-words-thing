@@ -5,7 +5,7 @@
   "description": "My lifelong immersion in hip hop has desensitized me to curse words. Creating an app that scans lyrics for offensive language, I can save time by avoiding songs without inappropriate content while editing for our radio station.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && prisma generate",
     "start": "next start",
     "lint": "next lint"
   },
