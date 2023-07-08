@@ -13,6 +13,7 @@ interface IResponse {
     songLyrics: string;
     error?: string;
     song: ISong;
+    
   };
 }
 const Main: React.FC = () => {

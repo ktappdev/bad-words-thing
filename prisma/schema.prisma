@@ -12,6 +12,6 @@ datasource db {
 
 model BadWordsList {
   id     String  @id @default(auto()) @map("_id") @db.ObjectId
-  word   String
+  word   String  @unique
   colour String?
 }

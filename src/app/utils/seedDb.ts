@@ -12,8 +12,6 @@ async function seedDatabase(items: string[]) {
     console.log("Database seeded successfully!");
   } catch (error) {
     console.error("Error seeding the database:", error);
-  } finally {
-    await prisma.$disconnect();
   }
 }
 
@@ -40,4 +38,4 @@ const items = [
   "ejakulate",
 ];
 
-seedDatabase(items);
+export default seedDatabase(items);
