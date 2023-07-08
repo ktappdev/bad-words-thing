@@ -1,12 +1,12 @@
-const { PrismaClient } = require("@prisma/client");
+import { prisma } from "@/app/utils/prismaClient";
 
-const prisma = new PrismaClient();
-
-async function seedDatabase(items:string[]) {
+async function seedDatabase(items: string[]) {
   try {
     for (const item of items) {
-      await prisma.item.create({
-        data: item,
+      await prisma.badWordsList.create({
+        data: {
+          word: item,
+        },
       });
     }
     console.log("Database seeded successfully!");
@@ -19,9 +19,25 @@ async function seedDatabase(items:string[]) {
 
 // Usage example
 const items = [
-  { name: "Item 1", price: 10 },
-  { name: "Item 2", price: 15 },
-  { name: "Item 3", price: 20 },
+  "hello",
+  "b!tch",
+  "b17ch",
+  "b1tch",
+  "bastard",
+  "bi+ch",
+  "boiolas",
+  "buceta",
+  "c0ck",
+  "cawk",
+  "chink",
+  "cipa",
+  "clits",
+  "cock",
+  "cum",
+  "cunt",
+  "dildo",
+  "dirsa",
+  "ejakulate",
 ];
 
 seedDatabase(items);
