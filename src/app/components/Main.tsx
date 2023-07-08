@@ -13,6 +13,7 @@ interface IResponse {
     songLyrics: string;
     error?: string;
     song: ISong;
+    wordCount: number;
   };
 }
 const Main: React.FC = () => {
@@ -46,6 +47,7 @@ const Main: React.FC = () => {
       });
       setLyricsAtom(response.data.songLyrics);
       setWordCountAtom(response.data.wordCount);
+      // console.log(response.data);
 
       let lyrics = response.data.songLyrics;
       let song = response.data.song;

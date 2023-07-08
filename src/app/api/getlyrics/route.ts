@@ -22,7 +22,6 @@ export async function POST(request: NextRequest) {
     let song: ISong = await getSong(options);
     const editLyrics = removeSquareBrackets(song.lyrics);
     const lyricsWordCount = wordCount(editLyrics);
-    console.log(lyricsWordCount);
     return NextResponse.json({
       songLyrics: song.lyrics,
       song: song,

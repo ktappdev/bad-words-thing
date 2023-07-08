@@ -20,7 +20,7 @@ const page = () => {
     }
   }
 
-  seedDatabase(badWordsArray);
+  // seedDatabase(badWordsArray);
 
   return <div>seeding</div>;
 };

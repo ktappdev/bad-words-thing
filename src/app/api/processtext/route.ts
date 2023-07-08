@@ -25,7 +25,8 @@ export async function POST(request: NextRequest) {
 
     let words = result.split(" ");
     const processedSongLyrics = identifierOccurrences(words, identifier);
-    
+    console.log(result);
+
     return NextResponse.json({
       curseWords: processedSongLyrics,
       data: result,
