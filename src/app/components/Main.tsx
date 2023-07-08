@@ -7,7 +7,6 @@ import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ISong } from "../utils/interfaces";
-import SmallLoadingSpinner from "./LoadingSpinner";
 
 interface IResponse {
   data: {
@@ -75,10 +74,12 @@ const Main: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex gap-2 text-sm text-gray-500">
-        <p>For best results use the format:</p>
-        <p className=" font-semibold">Artist Name - Song Title</p>
+      <div className="flex justify-center">
+        <p className=" text-2xl font-extrabold text-red-500 mb-4 ">
+          Bad Words Thing
+        </p>
       </div>
+
       <form className="mb-4" onSubmit={handleTextInputSubmit}>
         <label className="block mb-2 font-bold text-gray-700">
           Song Search:
