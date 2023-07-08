@@ -565,6 +565,6 @@ export const badWordsArray = [
   "nigger",
   "break",
   "tap",
-  "scope"
+  "scope",
   
 ];
