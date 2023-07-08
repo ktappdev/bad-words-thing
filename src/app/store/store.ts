@@ -17,5 +17,7 @@ export const songData = atom<ISongInfo>({
 
 export const lyricsAtom = atom<string>("");
 
+export const wordCountAtom = atom<number>(0);
+
 export const songAtom = atom<ISong | null>(null)
 
