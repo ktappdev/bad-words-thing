@@ -63,23 +63,6 @@ const Main: React.FC = () => {
     } catch (error) {}
   };
 
-  const handleTextAreaSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("/api/processtext", { textAreaInput });
-      let res = response.data as ISongInfo;
-      setSongInfo(res);
-      //   ;
-      router.push("/results");
-    } catch (error) {}
-  };
-
-  const handleTextAreaClear = () => {
-    setTextAreaInput("");
-    setButtonText("Submit");
-    setButtonColour(true);
-    setDisableButton(false);
-  };
 
   return (
     <div className="container mx-auto p-4">

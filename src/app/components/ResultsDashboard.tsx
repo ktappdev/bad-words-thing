@@ -18,7 +18,7 @@ const ResultsDashboard = () => {
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
 
-  if (songInfo.curseWords.count === 0) {
+  if (songInfo.curseWords?.count === 0) {
     return <div>The song is clean or you did not provide lyrics</div>;
   }
 
