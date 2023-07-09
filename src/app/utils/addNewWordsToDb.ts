@@ -1,6 +1,6 @@
 import { prisma } from "@/app/utils/prismaClient";
 
-export async function insertWords(words: string[]): Promise<{
+export async function addNewWordsToDb(words: string[]): Promise<{
   newWordsCount: number;
   skippedWordsCount: number;
 }> {

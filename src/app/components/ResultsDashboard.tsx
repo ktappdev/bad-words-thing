@@ -34,7 +34,7 @@ const ResultsDashboard = () => {
               <h2 className="text-2xl font-bold mb-4">{song_Atom?.title}</h2>
               <div>
                 <h3 className="text-lg font-bold mb-2">
-                  Number of Profanities:
+                  Number of bad Words:
                 </h3>
                 <p>{songInfo.curseWords?.count}</p>
               </div>
@@ -42,6 +42,14 @@ const ResultsDashboard = () => {
                 <h3 className="text-lg font-bold mb-2">Word count:</h3>
                 <p>{wordCount_Atom}</p>
               </div>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <Image
+                src={song_Atom?.albumArt!}
+                alt="album art"
+                width={180}
+                height={180}
+              ></Image>
               <div>
                 <Link
                   href={song_Atom?.url!}
@@ -51,14 +59,6 @@ const ResultsDashboard = () => {
                   Lyrics
                 </Link>
               </div>
-            </div>
-            <div>
-              <Image
-                src={song_Atom?.albumArt!}
-                alt="album art"
-                width={180}
-                height={180}
-              ></Image>
             </div>
           </div>
 

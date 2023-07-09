@@ -7,6 +7,7 @@ import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ISong } from "../utils/interfaces";
+import { IUpdateDbResponse } from "@/app/utils/interfaces";
 
 interface IResponse {
   data: {
@@ -27,10 +28,10 @@ const Main: React.FC = () => {
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>("Submit");
   const [buttonColour, setButtonColour] = useState<boolean>(true);
-
-  const handleTextInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTextInput(e.target.value);
-  };
+  const [updateResponse, setUpdateResponse] = useState({
+    newWordsCount: 0,
+    skippedWordsCount: 0,
+  });
 
   const handleTextAreaInputChange = async (
     e: ChangeEvent<HTMLTextAreaElement>
@@ -38,40 +39,20 @@ const Main: React.FC = () => {
     setTextAreaInput(e.target.value);
   };
 
-  const handleTextInputSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setDisableButton(true);
-    setButtonText("Please Wait...");
-    setButtonColour(false);
-    try {
-      const response: IResponse = await axios.post("/api/getlyrics", {
-        textInput,
-      });
-      setLyricsAtom(response.data.songLyrics);
-      setWordCountAtom(response.data.wordCount);
-      // console.log(response.data);
-
-      let lyrics = response.data.songLyrics;
-      let song = response.data.song;
-      setSongAtom(song);
-      const processedResponse = await axios.post("/api/processtext", {
-        lyrics,
-      });
-      let res = processedResponse.data as unknown as ISongInfo;
-      setSongInfo(res);
-      router.push("/results");
-    } catch (error) {}
-  };
-
   const handleTextAreaSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/processtext", { textAreaInput });
-      let res = response.data as ISongInfo;
-      setSongInfo(res);
+      const response = await axios.post("/api/updatedb", { textAreaInput });
+      let res = response.data as IUpdateDbResponse;
+      console.log(res.data);
+      setUpdateResponse(res.data);
+      // router.refresh()
+
       //   ;
-      router.push("/results");
-    } catch (error) {}
+      //   router.push("/results");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleTextAreaClear = () => {
@@ -84,35 +65,9 @@ const Main: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-center">
-        <p className=" text-2xl font-extrabold text-gray-600 mb-4 ">
-          [ADMIN]
-        </p>
+        <p className=" text-2xl font-extrabold text-gray-600 mb-4 ">[ADMIN]</p>
       </div>
 
-      <form className="mb-4" onSubmit={handleTextInputSubmit}>
-        <label className="block mb-2 font-bold text-gray-700">
-          Song Search:
-        </label>
-        <input
-          placeholder="Artist Name - Song Title"
-          disabled={disableButton}
-          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"
-          type="text"
-          value={textInput}
-          onChange={handleTextInputChange}
-        />
-        <button
-          disabled={disableButton}
-          className={
-            buttonColour
-              ? "mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
-              : "mt-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
-          }
-        >
-          {buttonText}
-          {/* <SmallLoadingSpinner /> */}
-        </button>
-      </form>
       <form className="mb-4" onSubmit={handleTextAreaSubmit}>
         <label className="block mb-2 font-bold text-gray-700">
           Update Bad Words List:
@@ -145,10 +100,14 @@ const Main: React.FC = () => {
           </button>
         </div>
       </form>
-      <div className="flex flex-col justify-center overflow-scrol border-2">
+      <div className="flex flex-col justify-center overflow-scroll border-2">
         <p className="text-gray-800 text-lg text-center">Report</p>
-        <p className="text-green-500 text-center">7 new words added</p>
-        <p className="text-red-500 text-center">3 duplicates not added</p>
+        <p className="text-green-500 text-center">
+          {updateResponse?.newWordsCount} new words added
+        </p>
+        <p className="text-red-500 text-center">
+          {updateResponse?.skippedWordsCount} duplicates not added
+        </p>
       </div>
     </div>
   );
