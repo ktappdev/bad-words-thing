@@ -32,9 +32,7 @@ export default function RootLayout({
                 </Suspense>
               </div>
             </header>
-            <div className="flex flex-col justify-center items-center w-full h-[calc(100vh-100px)]">
-              {children}
-            </div>
+            <div className="pt-8">{children}</div>
           </div>
         </body>
       </html>

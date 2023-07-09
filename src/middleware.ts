@@ -32,7 +32,8 @@ export default authMiddleware({
       !whiteList.includes(auth.sessionClaims.email.toString()) &&
       !auth.isPublicRoute
     ) {
-      console.log("I can implement my own whitelist here using clerk");
+      // console.log("I can implement my own whitelist here using clerk");
+      // if you are signed in but not on the list
       const notAuthorized = new URL("/not-authorized", req.url);
       return NextResponse.redirect(notAuthorized);
     }
