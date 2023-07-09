@@ -12,7 +12,14 @@ const whiteList = [
   "kentaylorappdev@gmail.com",
 ];
 export default authMiddleware({
-  publicRoutes: ["/", "/results", "/sign-in", "/sign-up", "/not-authorized"],
+  publicRoutes: [
+    "/",
+    "/results",
+    "/api",
+    "/sign-in",
+    "/sign-up",
+    "/not-authorized",
+  ],
   afterAuth(auth, req) {
     if (
       auth.sessionClaims?.email &&
@@ -23,16 +30,17 @@ export default authMiddleware({
       return NextResponse.redirect(dashboard);
     }
 
-    if (!auth.userId && !auth.isPublicRoute) {
-      return redirectToSignIn({ returnBackUrl: req.url });
-    }
+    // if (!auth.userId && !auth.isPublicRoute) {
+    //   return redirectToSignIn({ returnBackUrl: req.url });
+    // }
     // console.log(auth);
     if (
       auth.sessionClaims?.email &&
       !whiteList.includes(auth.sessionClaims.email.toString()) &&
       !auth.isPublicRoute
     ) {
-      console.log("I can implement my own whitelist here using clerk");
+      // console.log("I can implement my own whitelist here using clerk");
+      // if you are signed in but not on the list
       const notAuthorized = new URL("/not-authorized", req.url);
       return NextResponse.redirect(notAuthorized);
     }
