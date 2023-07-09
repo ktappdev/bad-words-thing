@@ -36,7 +36,7 @@ const ResultsDashboard = () => {
                 <h3 className="text-lg font-bold mb-2">
                   Number of Profanities:
                 </h3>
-                <p>{songInfo.curseWords.count}</p>
+                <p>{songInfo.curseWords?.count}</p>
               </div>
               <div>
                 <h3 className="text-lg font-bold mb-2">Word count:</h3>
