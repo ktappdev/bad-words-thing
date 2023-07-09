@@ -5,6 +5,7 @@ import BackButton from "@/app/components/BackButton";
 const inter = Inter({ subsets: ["latin"] });
 import MyUserButton from "./components/MyUserButton";
 import { Suspense } from "react";
+import Link from "next/link";
 export const metadata = {
   title: "Bad Words Thing",
   description:
@@ -32,7 +33,12 @@ export default function RootLayout({
                 </Suspense>
               </div>
             </header>
-            <div className="pt-8">{children}</div>
+            <div className="pt-12">{children}</div>
+            <footer className="z-10 py-2 fixed bottom-0 left-0 right-0 text-sm flex justify-end items-center w-full bg-slate-100 dark:bg-gray-900">
+              <div className="mx-4">
+                <Link href={"/admin"}>Admin</Link>
+              </div>
+            </footer>
           </div>
         </body>
       </html>
