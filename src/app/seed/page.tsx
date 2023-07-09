@@ -1,8 +1,7 @@
 import { prisma } from "@/app/utils/prismaClient";
-import { useState } from "react";
-import { badWordsArray } from "@/app/utils/badWords";
 const page = () => {
-  //   const [finished, setFinished] = useState<boolean>(false);
+  // const [finished, setFinished] = useState<boolean>(false);
+
   async function seedDatabase(items: string[]) {
     let finished = false;
     try {
@@ -20,9 +19,9 @@ const page = () => {
     }
   }
 
-  // seedDatabase(badWordsArray);
+  // seedDatabase(badWordsArray); //enable this to seed the database
 
-  return <div>seeding</div>;
+  return <div>Seeding page, check the server console for updates</div>;
 };
 
 export default page;

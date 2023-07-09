@@ -15,8 +15,8 @@ export async function POST(request: NextRequest) {
   const badWordsArray = await getBadWordsFromDb();
 
   try {
-    const result: string = clean(sentData.textAreaInput || sentData.lyrics, {
-      exceptions: ["fun"],
+    const result: string = clean(sentData.lyrics, {
+      exceptions: ["fu"],
       customBadWords: badWordsArray,
       customReplacement: (badWord: string) => {
         return ` ${identifier} ${badWord}`;
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     let words = result.split(" ");
     const processedSongLyrics = identifierOccurrences(words, identifier);
-    console.log(result);
+    // console.log(result);
 
     return NextResponse.json({
       curseWords: processedSongLyrics,
