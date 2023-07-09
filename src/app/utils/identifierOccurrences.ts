@@ -7,7 +7,7 @@ export default function identifierOccurrences(
   for (let i = 0; i < words.length; i++) {
     if (words[i] === identifier) {
       count++;
-      let chopWordsOriginal = words.slice(i - 8, i + 3);
+      let chopWordsOriginal = words.slice(i - 8, i + 4);
       let chopWords = chopWordsOriginal.filter((item) => item !== identifier);
 
       let joinedString = chopWords.join(" ").replace("\r\n", " ");
@@ -21,7 +21,7 @@ export default function identifierOccurrences(
       linesToEdit: linesToEdit,
     };
   }
-  
+
   return {
     count: count,
     linesToEdit: linesToEdit,

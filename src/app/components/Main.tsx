@@ -26,6 +26,7 @@ const Main: React.FC = () => {
   const [song_Atom, setSongAtom] = useAtom(songAtom);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>("Submit");
+  const [buttonColour, setButtonColour] = useState<boolean>(true);
 
   const handleTextInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTextInput(e.target.value);
@@ -41,6 +42,7 @@ const Main: React.FC = () => {
     e.preventDefault();
     setDisableButton(true);
     setButtonText("Please Wait...");
+    setButtonColour(false);
     try {
       const response: IResponse = await axios.post("/api/getlyrics", {
         textInput,
@@ -61,20 +63,6 @@ const Main: React.FC = () => {
     } catch (error) {}
   };
 
-  const handleTextAreaSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("/api/processtext", { textAreaInput });
-      let res = response.data as ISongInfo;
-      setSongInfo(res);
-      //   ;
-      router.push("/results");
-    } catch (error) {}
-  };
-
-  const handleTextAreaClear = () => {
-    setTextAreaInput("");
-  };
 
   return (
     <div className="container mx-auto p-4">
@@ -98,45 +86,16 @@ const Main: React.FC = () => {
         />
         <button
           disabled={disableButton}
-          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
+          className={
+            buttonColour
+              ? "mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
+              : "mt-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
+          }
         >
           {buttonText}
           {/* <SmallLoadingSpinner /> */}
         </button>
       </form>
-      <form className="mb-4" onSubmit={handleTextAreaSubmit}>
-        <label className="block mb-2 font-bold text-gray-700">
-          Update Bad Words List:
-        </label>
-        <textarea
-          placeholder="Seperate words by comma or newline"
-          disabled={disableButton}
-          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"
-          rows={4}
-          value={textAreaInput}
-          onChange={handleTextAreaInputChange}
-        ></textarea>
-        <div className="mt-2 space-x-2">
-          <button
-            disabled={disableButton}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
-          >
-            {buttonText}
-          </button>
-          <button
-            className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 focus:bg-gray-400"
-            onClick={handleTextAreaClear}
-            disabled={disableButton}
-          >
-            Clear
-          </button>
-        </div>
-      </form>
-      <div className="flex flex-col justify-center overflow-scrol border-2">
-        <p className="text-gray-800 text-lg text-center">Report</p>
-        <p className="text-green-500 text-center">7 new words added</p>
-        <p className="text-red-500 text-center">3 duplicates not added</p>
-      </div>
     </div>
   );
 };
