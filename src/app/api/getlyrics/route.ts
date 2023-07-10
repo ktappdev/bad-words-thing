@@ -2,7 +2,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { removeSquareBrackets } from "@/app/utils/removeSquareBrackets";
 import { wordCount } from "@/app/utils/wordCount";
-import { getLyrics, getSong } from "genius-lyrics-api";
+import { getLyrics, getSong, getSongById } from "genius-lyrics-api-mod";
 import { ISong } from "@/app/utils/interfaces";
 interface sentData {
   textInput: string;
@@ -16,6 +16,10 @@ export async function POST(request: NextRequest) {
     title: query[1].trim(),
     artist: query[0].trim(),
     optimizeQuery: true,
+  };
+  const options2 = {
+    apiKey: process.env.NEXT_PUBLIC_GENIUS_KEY,
+    id: 772,
   };
 
   try {
