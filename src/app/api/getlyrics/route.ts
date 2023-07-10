@@ -1,9 +1,12 @@
-// Importing necessary modules and packages
+
 import { NextResponse, NextRequest } from "next/server";
 import { removeSquareBrackets } from "@/app/utils/removeSquareBrackets";
 import { wordCount } from "@/app/utils/wordCount";
-import { getLyrics, getSong, getSongById } from "genius-lyrics-api-mod";
+import { getSong } from "genius-lyrics-api-mod";
 import { ISong } from "@/app/utils/interfaces";
+import searchYoutube from "@/app/utils/youtube";
+// import { IYouTubeSearchResponse } from "@/app/utils/interfaces";
+
 interface sentData {
   textInput: string;
 }
@@ -17,15 +20,15 @@ export async function POST(request: NextRequest) {
     artist: query[0].trim(),
     optimizeQuery: true,
   };
-  const options2 = {
-    apiKey: process.env.NEXT_PUBLIC_GENIUS_KEY,
-    id: 772,
-  };
 
   try {
     let song: ISong = await getSong(options);
     const editLyrics = removeSquareBrackets(song.lyrics);
     const lyricsWordCount = wordCount(editLyrics);
+    let youtubeResponse: string | undefined = await searchYoutube(song.title);
+
+    console.log("gas", youtubeResponse);
+
     return NextResponse.json({
       songLyrics: song.lyrics,
       song: song,
