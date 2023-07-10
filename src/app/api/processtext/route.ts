@@ -1,9 +1,10 @@
 // Importing necessary modules and packages
-import { clean } from "profanity-cleaner";
+// import { clean } from "profanity-cleaner";
 import { NextResponse, NextRequest } from "next/server";
 import identifierOccurrences from "@/app/utils/identifierOccurrences";
 // import { badWordsArray } from "@/app/utils/badWords";
 import { getBadWordsFromDb } from "@/app/utils/getBadWordsFromDb";
+import processTextOperations from "@/app/utils/processTextOperations";
 
 interface sentData {
   textAreaInput?: string;
@@ -15,7 +16,14 @@ export async function POST(request: NextRequest) {
   const badWordsArray = await getBadWordsFromDb();
 
   try {
-    const result: string = clean(sentData.lyrics, {
+    if (!sentData.lyrics === undefined) {
+      return NextResponse.json({
+        curseWords: 0,
+        data: null,
+        error: "No lyrics found",
+      });
+    }
+    const result: string = processTextOperations(sentData.lyrics!, {
       exceptions: ["fu"],
       customBadWords: badWordsArray,
       customReplacement: (badWord: string) => {

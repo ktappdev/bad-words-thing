@@ -28,7 +28,6 @@
     "jotai": "^2.2.2",
     "next": "13.4.8",
     "postcss": "8.4.24",
-    "profanity-cleaner": "^0.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-loader-spinner": "^5.3.4",
