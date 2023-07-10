@@ -55,7 +55,8 @@ const Main: React.FC = () => {
     }
   };
 
-  const handleTextAreaClear = () => {
+  const handleTextAreaClear = (e: any) => {
+    e.preventDefault();
     setTextAreaInput("");
     setButtonText("Submit");
     setButtonColour(true);
@@ -93,14 +94,14 @@ const Main: React.FC = () => {
           </button>
           <button
             className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 focus:bg-gray-400"
-            onClick={handleTextAreaClear}
+            onClick={(e) => handleTextAreaClear(e)}
             disabled={disableButton}
           >
             Clear
           </button>
         </div>
       </form>
-      <div className="flex flex-col justify-center overflow-scroll border-2">
+      <div className="flex flex-col justify-center overflow-scroll">
         <p className="text-gray-800 text-lg text-center">Report</p>
         <p className="text-green-500 text-center">
           {updateResponse?.newWordsCount} new words added

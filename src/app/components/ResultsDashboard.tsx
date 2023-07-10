@@ -27,6 +27,8 @@ const ResultsDashboard = () => {
     return <div>The song is clean or you did not provide lyrics</div>;
   }
 
+  songInfo.curseWords.linesToEdit.shift();
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="container mx-auto p-4">
@@ -66,7 +68,7 @@ const ResultsDashboard = () => {
           </div>
 
           <div className="mb-4">
-            {/* <h3 className="text-lg font-bold mb-2">Bad lyrics to edit:</h3> */}
+            <h3 className="text-lg font-bold mb-2">Bad words to edit:</h3>
             <ul>
               {songInfo.curseWords.linesToEdit.map((lyric: any, index) => (
                 <li
