@@ -44,9 +44,9 @@ dependencies:
   eslint-config-next:
     specifier: 13.4.8
     version: 13.4.8(eslint@8.44.0)(typescript@5.1.6)
-  genius-lyrics-api:
-    specifier: ^3.2.0
-    version: 3.2.0
+  genius-lyrics-api-mod:
+    specifier: ^3.2.1
+    version: 3.2.1
   jotai:
     specifier: ^2.2.2
     version: 2.2.2(react@18.2.0)
@@ -1398,10 +1398,11 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /axios@0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
+  /axios@0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
       follow-redirects: 1.15.2
+      form-data: 4.0.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -2511,10 +2512,10 @@ packages:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: false
 
-  /genius-lyrics-api@3.2.0:
-    resolution: {integrity: sha512-6Qfq5vDg04xO1RU/t4bueIfd397dLJV44k672muc1p1ry/rnzUhY65ZAH9fRwhEX642o6y5jv++4/BWM8O4peQ==}
+  /genius-lyrics-api-mod@3.2.1:
+    resolution: {integrity: sha512-l9ySrdoIJfr2Al4/bZ6i/mfdJNfNjn2LpN4apKQzFlLelAlLnijAk1bQM8HX+IXv/0RqAxIuVuDwzmx9UHxCFA==}
     dependencies:
-      axios: 0.21.4
+      axios: 0.27.2
       cheerio-without-node-native: 0.20.2
     transitivePeerDependencies:
       - debug

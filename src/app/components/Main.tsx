@@ -47,6 +47,9 @@ const Main: React.FC = () => {
       const response: IResponse = await axios.post("/api/getlyrics", {
         textInput,
       });
+
+  
+
       setLyricsAtom(response.data.songLyrics);
       setWordCountAtom(response.data.wordCount);
 
