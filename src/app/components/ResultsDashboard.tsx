@@ -13,6 +13,11 @@ interface singInfo {
   error?: string;
 }
 
+interface IParam {
+  percentageIntoSong: number;
+  badWords: string;
+}
+
 const ResultsDashboard = () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
@@ -63,7 +68,7 @@ const ResultsDashboard = () => {
           <div className="mb-4">
             {/* <h3 className="text-lg font-bold mb-2">Bad lyrics to edit:</h3> */}
             <ul>
-              {songInfo.curseWords.linesToEdit.map((lyric: {}, index) => (
+              {songInfo.curseWords.linesToEdit.map((lyric: any, index) => (
                 <li
                   key={index}
                   className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1"
