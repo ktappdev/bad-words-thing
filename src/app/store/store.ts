@@ -8,10 +8,12 @@ export interface ISongInfo {
   };
 }
 
+
+
 export const songData = atom<ISongInfo>({
   curseWords: {
     count: 0,
-    linesToEdit: [],
+    linesToEdit: [] ,
   },
 });
 

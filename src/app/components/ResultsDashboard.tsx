@@ -33,9 +33,7 @@ const ResultsDashboard = () => {
             <div>
               <h2 className="text-2xl font-bold mb-4">{song_Atom?.title}</h2>
               <div>
-                <h3 className="text-lg font-bold mb-2">
-                  Number of bad Words:
-                </h3>
+                <h3 className="text-lg font-bold mb-2">Number of bad Words:</h3>
                 <p>{songInfo.curseWords?.count}</p>
               </div>
               <div>
@@ -63,15 +61,19 @@ const ResultsDashboard = () => {
           </div>
 
           <div className="mb-4">
-            <h3 className="text-lg font-bold mb-2">Bad lyrics to edit:</h3>
+            {/* <h3 className="text-lg font-bold mb-2">Bad lyrics to edit:</h3> */}
             <ul>
-              {songInfo.curseWords.linesToEdit.map((lyric, index) => (
+              {songInfo.curseWords.linesToEdit.map((lyric: {}, index) => (
                 <li
                   key={index}
                   className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1"
                 >
-                  <span className="mr-2">10%</span>
-                  <span>{lyric}</span>
+                  <span className="mr-2">
+                    {lyric.percentageIntoSong > 0
+                      ? lyric.percentageIntoSong + "%"
+                      : null}
+                  </span>
+                  <span>{lyric.badWords}</span>
                 </li>
               ))}
             </ul>
