@@ -11,7 +11,7 @@ export async function addNewWordsToDb(words: string[]): Promise<{
     try {
       const existingWord = await prisma.badWordsList.findUnique({
         where: {
-          word: word,
+          word: word.trim(),
         },
       });
 
