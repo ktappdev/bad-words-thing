@@ -32,9 +32,8 @@ export default async function getSongDuration(
     );
 
     const videoId = searchResults.items[0].id.videoId;
-    const resData = await axios.get(
-      `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${process.env.NEXT_PUBLIC_YOUTUBE_KEY}`
-    );
+    let qString = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${process.env.NEXT_PUBLIC_YOUTUBE_KEY}`;
+    const resData = await axios.get(qString);
 
     const songDuration = resData.data.items[0].contentDetails.duration;
     console.log("Duration:", songDuration);
