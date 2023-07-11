@@ -9,7 +9,7 @@ var client = youtube.createClient({
 export default async function getSongDuration(
   query: string
 ): Promise<string | undefined> {
-  console.log("search youtube query ", query);
+  // console.log("search youtube query ", query);
   try {
     const params = {
       part: "snippet",
@@ -37,7 +37,7 @@ export default async function getSongDuration(
     const resData = await axios.get(qString);
 
     const songDuration = resData.data.items[0].contentDetails.duration;
-    console.log("Duration:", songDuration);
+    // console.log("Duration:", songDuration);
     return songDuration;
   } catch (error) {
     console.error("Error searching YouTube:", error);

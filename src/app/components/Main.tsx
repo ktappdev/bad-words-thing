@@ -27,6 +27,7 @@ const Main: React.FC = () => {
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
   const [song_Atom, setSongAtom] = useAtom(songAtom);
   const [disableButton, setDisableButton] = useState<boolean>(false);
+  const [disableCancelButton, setDisableCancelButton] = useState<boolean>(true);
   const [buttonText, setButtonText] = useState<string>("Submit");
   const [buttonColour, setButtonColour] = useState<boolean>(true);
 
@@ -45,6 +46,7 @@ const Main: React.FC = () => {
     setDisableButton(true);
     setButtonText("Please Wait...");
     setButtonColour(false);
+    setDisableCancelButton(false);
     try {
       const response: IResponse = await axios.post("/api/getlyrics", {
         textInput,
@@ -65,7 +67,10 @@ const Main: React.FC = () => {
       let res = processedResponse.data as unknown as ISongInfo;
       setSongInfo(res);
       router.push("/results");
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      setDisableCancelButton(false);
+    }
   };
 
   const handleCancelButtonClick = () => {
@@ -108,9 +113,15 @@ const Main: React.FC = () => {
           {/* <SmallLoadingSpinner /> */}
         </button>
         <button
+          disabled={disableCancelButton}
           type="button"
           onClick={handleCancelButtonClick}
-          className="mt-2 ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
+          className={
+            !disableCancelButton
+              ? "mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
+              : "mt-2 ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
+          }
+          // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
         >
           Cancel
         </button>

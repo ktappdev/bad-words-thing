@@ -9,7 +9,7 @@ interface SentData {
 
 export async function POST(request: NextRequest) {
   const sentData: SentData = await request.json();
-  console.log(sentData);
+  // console.log(sentData);
   if (!sentData.textAreaInput || sentData.textAreaInput.length === 0) {
     return NextResponse.json({
       error: "No words to delete.",
