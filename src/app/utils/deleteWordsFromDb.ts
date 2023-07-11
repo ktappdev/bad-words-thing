@@ -32,7 +32,7 @@ export async function deleteWordsFromDb(words: string[]): Promise<{
     }
   }
 
-  console.log(`Deleted words: ${deletedWordsCount}`);
-  console.log(`Skipped words: ${skippedWordsCount}`);
+//   console.log(`Deleted words: ${deletedWordsCount}`);
+//   console.log(`Skipped words: ${skippedWordsCount}`);
   return { deletedWordsCount, skippedWordsCount };
 }

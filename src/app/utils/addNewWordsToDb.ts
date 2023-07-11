@@ -32,7 +32,7 @@ export async function addNewWordsToDb(words: string[]): Promise<{
     }
   }
 
-  console.log(`New words added: ${newWordsCount}`);
-  console.log(`Skipped words: ${skippedWordsCount}`);
+  // console.log(`New words added: ${newWordsCount}`);
+  // console.log(`Skipped words: ${skippedWordsCount}`);
   return { newWordsCount, skippedWordsCount };
 }

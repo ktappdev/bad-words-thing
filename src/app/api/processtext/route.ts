@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       sentData.packageToProcess.lyricsWordCount
     );
 
-    console.log(timeFromPercentage);
+    // console.log(timeFromPercentage);
     return NextResponse.json({
       curseWords: count_badWords_percentageIntoSong,
       timeFromPercentage,
