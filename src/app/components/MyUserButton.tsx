@@ -69,7 +69,7 @@ export default function MyUserButton() {
           onClick={handleClick}
           startIcon={<ArrowDropDownIcon />}
           variant="text"
-          className="text-black text-xs"
+          className="text-black dark:text-white text-xs"
         >
           {user?.fullName}
           <Image
