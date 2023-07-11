@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     const wordsInArray = sentData.textAreaInput?.split(",");
 
     const result: IUpdateDbRes = await addNewWordsToDb(wordsInArray);
-    console.log(result);
+    // console.log(result);
     return NextResponse.json({
       data: result,
     });

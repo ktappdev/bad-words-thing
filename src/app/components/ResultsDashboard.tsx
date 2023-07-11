@@ -1,15 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useAtom } from "jotai";
 import { songAtom, songData, wordCountAtom } from "../store/store";
 import { ISong } from "../utils/interfaces";
 import Image from "next/image";
 import Link from "next/link";
+import searchYoutube from "../utils/getSongDuration";
+import { percentageToTime } from "../utils/percentageToTime";
+// import GetTimes from "@/app/components/GetTimes";
+import { youtubeTimeStringToSeconds } from "../utils/youtubeTimeStringToSeconds";
 interface singInfo {
   curseWords: {
     count: number;
     linesToEdit: string[];
   };
+  timeFromPercentage: string[];
   error?: string;
 }
 
@@ -18,11 +23,27 @@ interface IParam {
   badWords: string;
 }
 
-const ResultsDashboard = () => {
+const ResultsDashboard = async () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
-
+  // const [timeStamps, setTimeStamps] = useState<number[]>([]);
+  // console.log(song_Atom);
+  // let time = await searchYoutube(song_Atom?.title!);
+  // let listOfPercentages = songInfo.curseWords.linesToEdit.map(
+  //   (item: any) => item.percentageIntoSong
+  // );
+  // if (time !== undefined) {
+  //   console.log("time has data", time);
+  //   let songDurationInSeconds = youtubeTimeStringToSeconds(time);
+  //   let result = percentageToTime(
+  //     listOfPercentages,
+  //     songDurationInSeconds,
+  //     wordCount_Atom
+  //   );
+  //   setTimeStamps(result);
+  // }
+  // console.log("time stamps", timeStamps);
   if (songInfo.curseWords?.count === 0) {
     return <div>The song is clean or you did not provide lyrics</div>;
   }
@@ -73,13 +94,11 @@ const ResultsDashboard = () => {
               {songInfo.curseWords.linesToEdit.map((lyric: any, index) => (
                 <li
                   key={index}
-                  className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1"
+                  className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1 gap-2"
                 >
-                  <span className="mr-2">
-                    {lyric.percentageIntoSong > 0
-                      ? lyric.percentageIntoSong + "%"
-                      : null}
-                  </span>
+                  <Suspense fallback={<div>...</div>}>
+                    <span>{songInfo.timeFromPercentage[index]}</span>
+                  </Suspense>
                   <span>{lyric.badWords}</span>
                 </li>
               ))}
