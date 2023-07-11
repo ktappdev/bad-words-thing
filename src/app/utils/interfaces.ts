@@ -7,17 +7,14 @@ export interface ISong {
   albumArt: string;
 }
 
-export interface IUpdateDbResponse {
-  data: {
-    newWordsCount: number;
-    skippedWordsCount: number;
-  };
-}
 export interface IUpdateDbRes {
   newWordsCount: number;
   skippedWordsCount: number;
 }
-
+export interface IDeleteFromDbRes {
+  deletedWordsCount: number;
+  skippedWordsCount: number;
+}
 
 export interface IYouTubeSearchResponse {
   kind: "youtube#searchListResponse";

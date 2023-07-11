@@ -17,6 +17,7 @@ interface IResponse {
     songDuration: number;
   };
 }
+
 const Main: React.FC = () => {
   const router = useRouter();
   const [textInput, setTextInput] = useState("");
@@ -67,10 +68,18 @@ const Main: React.FC = () => {
     } catch (error) {}
   };
 
+  const handleCancelButtonClick = () => {
+    // e.preventDefault();
+    window.location.reload();
+    setDisableButton(false);
+    setButtonText("Submit");
+    setButtonColour(true);
+  };
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-center">
-        <p className=" text-2xl font-extrabold text-gray-600 mb-4 ">
+        <p className="text-2xl font-extrabold text-gray-600 mb-4">
           [bad words thing]
         </p>
       </div>
@@ -97,6 +106,13 @@ const Main: React.FC = () => {
         >
           {buttonText}
           {/* <SmallLoadingSpinner /> */}
+        </button>
+        <button
+          type="button"
+          onClick={handleCancelButtonClick}
+          className="mt-2 ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
+        >
+          Cancel
         </button>
       </form>
     </div>
