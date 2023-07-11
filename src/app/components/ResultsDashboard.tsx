@@ -44,6 +44,7 @@ const ResultsDashboard = async () => {
   //   setTimeStamps(result);
   // }
   // console.log("time stamps", timeStamps);
+  // sigh
   if (songInfo.curseWords?.count === 0) {
     return <div>The song is clean or you did not provide lyrics</div>;
   }
