@@ -14,6 +14,7 @@ interface IResponse {
     error?: string;
     song: ISong;
     wordCount: number;
+    songDuration: number;
   };
 }
 const Main: React.FC = () => {
@@ -48,24 +49,23 @@ const Main: React.FC = () => {
         textInput,
       });
 
-  
-
-      setLyricsAtom(response.data.songLyrics);
-      setWordCountAtom(response.data.wordCount);
-      // console.log(response.data);
-
-      let lyrics = response.data.songLyrics;
+      setLyricsAtom(response.data.song.lyrics);
+      let lyricsWordCount = response.data.wordCount;
+      setWordCountAtom(lyricsWordCount);
+      let lyrics = response.data.song.lyrics;
       let song = response.data.song;
+      let songDuration = response.data.songDuration;
       setSongAtom(song);
+      let packageToProcess = { lyrics, songDuration, lyricsWordCount };
       const processedResponse = await axios.post("/api/processtext", {
-        lyrics,
+        packageToProcess,
       });
+      // console.log(processedResponse.data);
       let res = processedResponse.data as unknown as ISongInfo;
       setSongInfo(res);
       router.push("/results");
     } catch (error) {}
   };
-
 
   return (
     <div className="container mx-auto p-4">

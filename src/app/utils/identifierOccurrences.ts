@@ -2,7 +2,7 @@ export default function identifierOccurrences(
   words: string[],
   identifier: string
 ) {
-  console.log(words.length);
+  // console.log(words.length);
   let linesToEdit: [{ badWords: string; percentageIntoSong: number }] = [
     { badWords: "", percentageIntoSong: 0 },
   ];
@@ -10,7 +10,7 @@ export default function identifierOccurrences(
   for (let i = 0; i < words.length; i++) {
     if (words[i] === identifier) {
       count++;
-      let percentageIntoSong = Math.round((i / words.length) * 100);
+      let percentageIntoSong = Math.round(((i + 12) / words.length) * 100);
 
       let chopWordsOriginal = words.slice(i - 8, i + 4);
       let chopWords = chopWordsOriginal.filter((item) => item !== identifier);
