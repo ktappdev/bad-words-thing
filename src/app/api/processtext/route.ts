@@ -20,10 +20,10 @@ export async function POST(request: NextRequest) {
   const badWordsArray = await getBadWordsFromDb();
 
   try {
-    console.log(
-      "this is duration number",
-      sentData.packageToProcess.songDuration
-    );
+    // console.log(
+    //   "this is duration number",
+    //   sentData.packageToProcess.songDuration
+    // );
     if (!sentData.packageToProcess.lyrics === undefined) {
       return NextResponse.json({
         curseWords: 0,
