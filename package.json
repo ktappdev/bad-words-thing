@@ -2,7 +2,7 @@
   "name": "bad-words-thing",
   "version": "0.1.0",
   "private": true,
-  "description": "My lifelong immersion in hip hop has desensitized me to curse words. Creating an app that scans lyrics for offensive language, I can save time by avoiding songs without inappropriate content while editing for our radio station.",
+  "description": "Bad Words Thing - A Next.js web app for detecting profanity in song lyrics.",
   "scripts": {
     "dev": "next dev",
     "build": "next build && prisma generate",

@@ -8,11 +8,6 @@ export interface IUpdateDbResponse {
   deletedWordsCount?: number | null;
 }
 
-// export interface IDeleteFromDbResponse {
-//   deletedWordsCount: number | null;
-//   skippedWordsCount: number | null;
-// }
-
 const Main: React.FC = () => {
   const [textAreaInput, setTextAreaInput] = useState("");
   const [disableButton, setDisableButton] = useState<boolean>(false);

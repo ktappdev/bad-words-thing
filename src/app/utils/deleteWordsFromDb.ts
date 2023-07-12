@@ -31,8 +31,5 @@ export async function deleteWordsFromDb(words: string[]): Promise<{
       console.error(`Error deleting word '${word}': ${error as string}`);
     }
   }
-
-//   console.log(`Deleted words: ${deletedWordsCount}`);
-//   console.log(`Skipped words: ${skippedWordsCount}`);
   return { deletedWordsCount, skippedWordsCount };
 }
