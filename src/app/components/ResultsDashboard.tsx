@@ -48,7 +48,7 @@ const ResultsDashboard = async () => {
   if (songInfo.curseWords?.count === 0) {
     return (
       <div className="flex flex-col items-center justify-center  bg-gray-100">
-        {song_Atom?.title && (
+        {song_Atom?.title ? (
           <div>
             {" "}
             {song_Atom?.title} is clean -{" "}
@@ -57,9 +57,13 @@ const ResultsDashboard = async () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Lyrics
+              Click here for lyrics
             </Link>
           </div>
+        ) : (
+          <p className="text-red-400">
+            Minor error - Didn't find a song or something went wrong.
+          </p>
         )}
         <div className="mt-4">
           <Link href="/">Go Back</Link>
