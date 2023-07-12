@@ -9,7 +9,7 @@ import Link from "next/link";
 export const metadata = {
   title: "Bad Words Thing",
   description:
-    "My deep hip hop immersion desensitized me to curse words and inappropriate language. By creating a lyrics scanning app, I can save time editing for our radio station by knowing what to expect before even playing the song.",
+    "Bad Words Thing - A Next.js web app for detecting profanity in song lyrics.",
 };
 
 export default function RootLayout({
