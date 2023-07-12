@@ -46,7 +46,30 @@ const ResultsDashboard = async () => {
   // console.log("time stamps", timeStamps);
   // sigh
   if (songInfo.curseWords?.count === 0) {
-    return <div>The song is clean or you did not provide lyrics</div>;
+    return (
+      <div className="flex flex-col items-center justify-center  bg-gray-100">
+        {song_Atom?.title ? (
+          <div>
+            {" "}
+            {song_Atom?.title} is clean -{" "}
+            <Link
+              href={song_Atom?.url!}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Click here for lyrics
+            </Link>
+          </div>
+        ) : (
+          <p className="text-red-400">
+            Minor error - Didn't find a song or something went wrong.
+          </p>
+        )}
+        <div className="mt-4">
+          <Link href="/">Go Back</Link>
+        </div>
+      </div>
+    );
   }
 
   songInfo.curseWords.linesToEdit.shift();
