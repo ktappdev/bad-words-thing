@@ -10,7 +10,7 @@ export default function identifierOccurrences(
   for (let i = 0; i < words.length; i++) {
     if (words[i] === identifier) {
       count++;
-      let percentageIntoSong = Math.round(((i + 12) / words.length) * 100);
+      let percentageIntoSong = Math.round(((i+1) / words.length) * 100); //plus one because the identifier is i the actual bad word is i+1
 
       let chopWordsOriginal = words.slice(i - 8, i + 4);
       let chopWords = chopWordsOriginal.filter((item) => item !== identifier);
