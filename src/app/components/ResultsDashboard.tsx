@@ -5,10 +5,6 @@ import { songAtom, songData, wordCountAtom } from "../store/store";
 import { ISong } from "../utils/interfaces";
 import Image from "next/image";
 import Link from "next/link";
-import searchYoutube from "../utils/getSongDuration";
-import { percentageToTime } from "../utils/percentageToTime";
-// import GetTimes from "@/app/components/GetTimes";
-import { youtubeTimeStringToSeconds } from "../utils/youtubeTimeStringToSeconds";
 interface singInfo {
   curseWords: {
     count: number;
@@ -27,24 +23,7 @@ const ResultsDashboard = async () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
-  // const [timeStamps, setTimeStamps] = useState<number[]>([]);
-  // console.log(song_Atom);
-  // let time = await searchYoutube(song_Atom?.title!);
-  // let listOfPercentages = songInfo.curseWords.linesToEdit.map(
-  //   (item: any) => item.percentageIntoSong
-  // );
-  // if (time !== undefined) {
-  //   console.log("time has data", time);
-  //   let songDurationInSeconds = youtubeTimeStringToSeconds(time);
-  //   let result = percentageToTime(
-  //     listOfPercentages,
-  //     songDurationInSeconds,
-  //     wordCount_Atom
-  //   );
-  //   setTimeStamps(result);
-  // }
-  // console.log("time stamps", timeStamps);
-  // sigh
+  
   if (songInfo.curseWords?.count === 0) {
     return (
       <div className="flex flex-col items-center justify-center  bg-gray-100">

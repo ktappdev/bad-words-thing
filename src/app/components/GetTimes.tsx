@@ -10,10 +10,6 @@ var client = youtube.createClient({
 const GetTimes = async (param: { song: string }) => {
   console.log(process.env.NEXT_PUBLIC_YOUTUBE_KEY);
 
-  //   let youtubeResponse: string | undefined = await searchYoutube(song);
-
-  //   console.log("gas", youtubeResponse);
-
   const params = {
     part: "snippet",
     q: param.song + "audio",

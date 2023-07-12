@@ -42,9 +42,6 @@ export default function processTextOperations(
     word.replace(/\*/g, "\\w+")
   );
 
-  // console.log(censoredWords);
-
-  // Create a regular expression based on the options
   let regex = new RegExp(censoredWords.join("|"), "g");
 
   if (!option.caseSensitive) {
@@ -91,24 +88,6 @@ export default function processTextOperations(
       }`;
     }
 
-    // Censor the entire word
-    //let censoredWord = ''//option.placeholder.repeat(match.length); //removing this operation will save resources
-
-    // Keep the punctuation at the beginning and end of the word
-    // if (option.includePunctuation) {
-    //   const firstChar = match[0];
-    //   const lastChar = match[match.length - 1];
-    //   if (firstChar.match(/[^\w\s]/)) {
-    //     censoredWord = `${firstChar}${censoredWord.substring(1)}`;
-    //   }
-    //   if (lastChar.match(/[^\w\s]/)) {
-    //     censoredWord = `${censoredWord.substring(
-    //       0,
-    //       censoredWord.length - 1
-    //     )}${lastChar}`;
-    //   }
-    // }
-
     return "x";
   });
 }
@@ -121,27 +100,3 @@ export default function processTextOperations(
  *
  * @returns {boolean}
  */
-// function isProfane(
-//   text: string,
-//   options: {
-//     placeholder?: string;
-//     caseSensitive?: boolean;
-//     wholeWordsOnly?: boolean;
-//     exceptions?: string[];
-//     keepFirstAndLastChar?: boolean;
-//     customReplacement?: ((match: string) => string) | null;
-//     replacePartialWords?: boolean;
-//     includePunctuation?: boolean;
-//     minimumWordLength?: number;
-//     customMatch?: ((match: string) => boolean) | null;
-//     customBadWords?: string[];
-//   } = {}
-// ): boolean {
-//   const cleanedText = processTextOperations(text, options);
-//   return cleanedText !== text;
-// }
-
-// module.exports = {
-//   processTextOperations,
-//   isProfane,
-// };
