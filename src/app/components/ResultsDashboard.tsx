@@ -50,8 +50,7 @@ const ResultsDashboard = async () => {
       <div className="flex flex-col items-center justify-center  bg-gray-100">
         {song_Atom?.title ? (
           <div>
-            {" "}
-            {song_Atom?.title} is clean -{" "}
+            {song_Atom?.title} is clean -
             <Link
               href={song_Atom?.url!}
               rel="noopener noreferrer"
@@ -62,7 +61,7 @@ const ResultsDashboard = async () => {
           </div>
         ) : (
           <p className="text-red-400">
-            Minor error - Didn't find a song or something went wrong.
+            Minor error - Did not find a song or something went wrong.
           </p>
         )}
         <div className="mt-4">
