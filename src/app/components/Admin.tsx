@@ -107,17 +107,17 @@ const Main: React.FC = () => {
       <div className="flex flex-col justify-center overflow-scroll">
         <p className="text-gray-800 text-lg text-center">Report</p>
         <div className="flex flex-wrap justify-center mt-2 gap-2">
-          <div className="bg-green-200 px-4 py-2 rounded-lg mx-2">
+          <div className="bg-green-100 px-4 py-2 rounded-lg mx-2">
             <p className="text-green-800">
               New Words Added: {updateResponse?.newWordsCount}
             </p>
           </div>
-          <div className="bg-red-200 px-4 py-2 rounded-lg mx-2">
+          <div className="bg-red-100 px-4 py-2 rounded-lg mx-2">
             <p className="text-red-800">
               No Action Taken: {updateResponse?.skippedWordsCount}
             </p>
           </div>
-          <div className="bg-blue-200 px-4 py-2 rounded-lg mx-2">
+          <div className="bg-blue-100 px-4 py-2 rounded-lg mx-2">
             <p className="text-blue-800">
               Words Deleted: {updateResponse?.deletedWordsCount}
             </p>
