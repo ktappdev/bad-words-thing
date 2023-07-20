@@ -11,11 +11,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.21.14",
+    "@clerk/nextjs": "^4.22.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.13.7",
-    "@mui/material": "^5.13.7",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.1",
     "@prisma/client": "4.15.0",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
