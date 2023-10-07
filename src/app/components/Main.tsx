@@ -21,7 +21,8 @@ interface IResponse {
 const Main: React.FC = () => {
   const router = useRouter();
   const [textInput, setTextInput] = useState("");
-  const [textAreaInput, setTextAreaInput] = useState("");
+  const [songName, setSongName] = useState("");
+  // const [textAreaInput, setTextAreaInput] = useState("");
   const [songInfo, setSongInfo] = useAtom(songData);
   const [lyrics_Atom, setLyricsAtom] = useAtom(lyricsAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
@@ -34,22 +35,41 @@ const Main: React.FC = () => {
   const handleTextInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTextInput(e.target.value);
   };
-
-  const handleTextAreaInputChange = async (
-    e: ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setTextAreaInput(e.target.value);
+  const handleSongNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSongName(e.target.value);
   };
 
+  // const handleTextAreaInputChange = async (
+  //   e: ChangeEvent<HTMLTextAreaElement>
+  // ) => {
+  //   setTextAreaInput(e.target.value);
+  // };
+
   const handleTextInputSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    if (textInput.trim() === "" || songName.trim() === "") {
+      alert("Please enter a song name and artist name");
+      return
+    }
+
+
+    const searchText = () => {
+      if (textInput.length > 0 && songName.length > 0) {
+        return textInput + " -- " + songName;
+      }
+      else {
+        return //cancel
+      }
+    }
     e.preventDefault();
+    const searchtext = searchText();
+
     setDisableButton(true);
     setButtonText("Please Wait...");
     setButtonColour(false);
     setDisableCancelButton(false);
     try {
       const response: IResponse = await axios.post("/api/getlyrics", {
-        textInput,
+        searchtext,
       });
 
       setLyricsAtom(response.data.song.lyrics);
@@ -82,24 +102,41 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-center">
-        <p className="text-2xl font-extrabold text-gray-600 mb-4">
-          [bad words thing]
+    <div className="container mx-auto p-2 flex flex-col items-center w-full">
+
+
+      <div className="text-center pt-2">
+        <h1 className="text-5xl font-extrabold text-pink-600 hover:text-pink-800 transform transition-transform hover:scale-105">Bad Words Detective</h1>
+        <h1 className="text-4xl font-semibold text-blue-500 hover:text-blue-700 transform transition-transform hover:scale-105">by Lugetech</h1>
+        <p className="text-sm md:text-lg text-gray-600 mt-4">
+          Bad Words Detective: Your Song Lyrics Scanner for Radio-Friendly Tunes. We are all about spotting those not-so-obvious words in songs that might not be radio-friendly. Use our app to check out lyrics and make sure your tunes fit your vibe.
         </p>
       </div>
 
-      <form className="mb-4" onSubmit={handleTextInputSubmit}>
-        <label className="block mb-2 font-bold text-gray-700">
-          Song Search:
+
+
+      <form className="mb-4 md:px-24 w-full" onSubmit={handleTextInputSubmit}>
+        <label className="block mt-2 font-bold text-gray-700">
+          Artist Name:
         </label>
         <input
-          placeholder="Artist Name - Song Title"
+          placeholder="Artist Name"
           disabled={disableButton}
-          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none"
+          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none "
           type="text"
           value={textInput}
           onChange={handleTextInputChange}
+        />
+        <label className="block mt-2 font-bold text-gray-700">
+          Song Title:
+        </label>
+        <input
+          placeholder="Song Title"
+          disabled={disableButton}
+          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none "
+          type="text"
+          value={songName}
+          onChange={handleSongNameChange}
         />
         <button
           disabled={disableButton}
@@ -121,7 +158,7 @@ const Main: React.FC = () => {
               ? "mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
               : "mt-2 ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
           }
-          // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
+        // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
         >
           Cancel
         </button>
