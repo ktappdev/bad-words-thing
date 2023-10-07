@@ -109,7 +109,10 @@ const Main: React.FC = () => {
         <h1 className="text-5xl font-extrabold text-pink-600 hover:text-pink-800 transform transition-transform hover:scale-105">Bad Words Detective</h1>
         <h1 className="text-4xl font-semibold text-blue-500 hover:text-blue-700 transform transition-transform hover:scale-105">by Lugetech</h1>
         <p className="text-sm md:text-lg text-gray-600 mt-4">
-          Bad Words Detective: Your Song Lyrics Scanner for Radio-Friendly Tunes. We are all about spotting those not-so-obvious words in songs that might not be radio-friendly. Use our app to check out lyrics and make sure your tunes fit your vibe.
+          Your Song Lyrics Scanner for Radio-Friendly Tunes. Find those not-so-obvious words in songs that might not be radio-friendly. Not just the regular bad words.
+        </p>
+        <p className="text-xs text-gray-600">
+          lugetechgy@gmail.com
         </p>
       </div>
 
@@ -120,7 +123,7 @@ const Main: React.FC = () => {
           Artist Name:
         </label>
         <input
-          placeholder="Artist Name"
+          // placeholder="Artist Name"
           disabled={disableButton}
           className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none "
           type="text"
@@ -131,7 +134,7 @@ const Main: React.FC = () => {
           Song Title:
         </label>
         <input
-          placeholder="Song Title"
+          // placeholder="Song Title"
           disabled={disableButton}
           className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none "
           type="text"
@@ -163,6 +166,12 @@ const Main: React.FC = () => {
           Cancel
         </button>
       </form>
+      <footer className="mt-4">
+        <p className="text-sm text-gray-600">
+          © 2023 Lugetech. All rights reserved.
+        </p>
+
+      </footer>
     </div>
   );
 };
