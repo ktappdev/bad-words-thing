@@ -28,7 +28,7 @@ export default function processTextOperations(
     customReplacement: null,
     replacePartialWords: false,
     includePunctuation: false,
-    minimumWordLength: 3,
+    minimumWordLength: 2,
     customMatch: null,
     customBadWords: [],
   };

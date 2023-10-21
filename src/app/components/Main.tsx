@@ -46,12 +46,11 @@ const Main: React.FC = () => {
   // };
 
   const handleTextInputSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (textInput.trim() === "" || songName.trim() === "") {
       alert("Please enter a song name and artist name");
       return
     }
-
-
     const searchText = () => {
       if (textInput.length > 0 && songName.length > 0) {
         return textInput + " -- " + songName;
@@ -60,9 +59,7 @@ const Main: React.FC = () => {
         return //cancel
       }
     }
-    e.preventDefault();
     const searchtext = searchText();
-
     setDisableButton(true);
     setButtonText("Please Wait...");
     setButtonColour(false);
@@ -103,8 +100,6 @@ const Main: React.FC = () => {
 
   return (
     <div className="container mx-auto p-2 flex flex-col items-center w-full">
-
-
       <div className="text-center pt-2">
         <h1 className="text-5xl font-extrabold text-pink-600 hover:text-pink-800 transform transition-transform hover:scale-105">Bad Words Detective</h1>
         <h1 className="text-4xl font-semibold text-blue-500 hover:text-blue-700 transform transition-transform hover:scale-105">by Lugetech</h1>
@@ -115,9 +110,6 @@ const Main: React.FC = () => {
           lugetechgy@gmail.com
         </p>
       </div>
-
-
-
       <form className="mb-4 md:px-24 w-full" onSubmit={handleTextInputSubmit}>
         <label className="block mt-2 font-bold text-gray-700">
           Artist Name:
