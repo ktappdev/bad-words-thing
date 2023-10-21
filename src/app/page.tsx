@@ -1,9 +1,14 @@
-import Main from "./components/Main";
 
-export default function Home() {
+import React from "react";
+import Main from "@/app/components/Main";
+
+const page = () => {
   return (
-    <main className="flex  w-full flex-col items-center justify-center md:max-w-4xl mx-auto px-8 pt-16">
+    <div className="flex pt-12 w-full flex-col items-center justify-center md:max-w-4xl mx-auto">
       <Main />
-    </main>
+    </div>
   );
-}
+};
+
+export default page;
+

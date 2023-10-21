@@ -8,6 +8,7 @@ export default authMiddleware({
     "/results",
     "/api/getlyrics",
     "/api/processtext",
+    "/api/getbwcount",
     "/sign-in",
     "/sign-up",
   ],

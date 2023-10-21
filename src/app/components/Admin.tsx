@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect, Suspense } from "react";
 import axios from "axios";
+import BadWordsInDb from "./BadWordsInDb";
 
 export interface IUpdateDbResponse {
   newWordsCount?: number | null;
@@ -11,7 +12,7 @@ export interface IUpdateDbResponse {
 const Main: React.FC = () => {
   const [textAreaInput, setTextAreaInput] = useState("");
   const [disableButton, setDisableButton] = useState<boolean>(false);
-  const [buttonText, setButtonText] = useState<string>("Submit");
+  const [buttonText, setButtonText] = useState<string>("Add");
   const [buttonColour, setButtonColour] = useState<boolean>(true);
   const [updateResponse, setUpdateResponse] = useState<IUpdateDbResponse>();
 
@@ -24,7 +25,7 @@ const Main: React.FC = () => {
     try {
       const response = await axios.post("/api/updatedb", { textAreaInput });
       let res = response.data.data as IUpdateDbResponse;
-      console.log(res);
+      // console.log(res);
       setUpdateResponse(res);
     } catch (error) {
       console.log(error);
@@ -34,7 +35,7 @@ const Main: React.FC = () => {
   const handleTextAreaClear = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setTextAreaInput("");
-    setButtonText("Submit");
+    setButtonText("Add");
     setButtonColour(true);
     setDisableButton(false);
     setUpdateResponse({
@@ -49,15 +50,26 @@ const Main: React.FC = () => {
   ) => {
     e.preventDefault();
     try {
-      setTextAreaInput("");
+      // setTextAreaInput("");
       const response = await axios.post("/api/removefromdb", { textAreaInput });
       let res = response.data.data as IUpdateDbResponse;
-      console.log(res);
+      // console.log(res);
       setUpdateResponse(res);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+
+    if(textAreaInput.length === 0){
+      setUpdateResponse({
+        newWordsCount: null,
+        skippedWordsCount: null,
+        deletedWordsCount: null,
+      })      
+    }
+  }, [textAreaInput]);
 
   return (
     <div className="container mx-auto p-4">
@@ -89,24 +101,31 @@ const Main: React.FC = () => {
             {buttonText}
           </button>
           <button
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
+            onClick={handleDeleteButtonClick}
+            disabled={disableButton}
+          >
+            Remove
+          </button>
+          <div className="flex w-full justify-end items-center">
+          <button
             className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 focus:bg-gray-400"
             onClick={handleTextAreaClear}
             disabled={disableButton}
           >
             Clear
           </button>
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
-            onClick={handleDeleteButtonClick}
-            disabled={disableButton}
-          >
-            Delete
-          </button>
+          </div>
         </div>
       </form>
       <div className="flex flex-col justify-center overflow-scroll">
+        <div className="w-full px-4 ">
+          <Suspense fallback={<div>Loading...</div>}>
+          <BadWordsInDb />
+          </Suspense>
+        </div>
+        {updateResponse && textAreaInput.length > 0 && <div className="flex flex-col justify-center itrems-center mt-2 gap-2 md:w-1/2 mx-auto">
         <p className="text-gray-800 text-lg text-center">Report</p>
-        <div className="flex flex-wrap justify-center mt-2 gap-2">
           <div className="bg-green-100 px-4 py-2 rounded-lg mx-2">
             <p className="text-green-800">
               New Words Added: {updateResponse?.newWordsCount}
@@ -122,7 +141,7 @@ const Main: React.FC = () => {
               Words Deleted: {updateResponse?.deletedWordsCount}
             </p>
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   );

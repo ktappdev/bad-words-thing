@@ -7,7 +7,7 @@ import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ISong } from "../utils/interfaces";
-
+import  BadWordsInDb  from "./BadWordsInDb";
 interface IResponse {
   data: {
     songLyrics: string;
@@ -159,6 +159,9 @@ const Main: React.FC = () => {
         </button>
       </form>
       <footer className="mt-4">
+        <p className="text-sm text-gray-600 text-center">
+          <BadWordsInDb />
+        </p>
         <p className="text-sm text-gray-600">
           © 2023 Lugetech. All rights reserved.
         </p>

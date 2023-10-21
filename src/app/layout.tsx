@@ -1,6 +1,7 @@
+
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs/app-beta";
+import { ClerkProvider } from "@clerk/nextjs";
 import BackButton from "@/app/components/BackButton";
 const inter = Inter({ subsets: ["latin"] });
 import MyUserButton from "./components/MyUserButton";
@@ -45,3 +46,4 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
+
