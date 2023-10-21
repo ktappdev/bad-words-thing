@@ -23,7 +23,7 @@ const ResultsDashboard = async () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
-  
+
   if (songInfo.curseWords?.count === 0) {
     return (
       <div className="flex flex-col items-center justify-center  bg-gray-100">
@@ -63,11 +63,11 @@ const ResultsDashboard = async () => {
             <div>
               <h2 className="text-2xl font-bold mb-4">{song_Atom?.title}</h2>
               <div>
-                <h3 className="text-lg font-bold mb-2">Number of bad Words:</h3>
+                <h3 className="md:text-lg font-bold ">Bad Words:</h3>
                 <p>{songInfo.curseWords?.count}</p>
               </div>
               <div>
-                <h3 className="text-lg font-bold mb-2">Word count:</h3>
+                <h3 className="md:text-lg font-bold ">Word count:</h3>
                 <p>{wordCount_Atom}</p>
               </div>
             </div>
@@ -91,7 +91,7 @@ const ResultsDashboard = async () => {
           </div>
 
           <div className="mb-4">
-            <h3 className="text-lg font-bold mb-2">Bad words to edit:</h3>
+            <h3 className="md:text-lg font-bold mb-2">Bad words to edit:</h3>
             <ul>
               {songInfo.curseWords.linesToEdit.map((lyric: any, index) => (
                 <li

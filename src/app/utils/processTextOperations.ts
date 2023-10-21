@@ -23,7 +23,7 @@ export default function processTextOperations(
     placeholder: "*",
     caseSensitive: false,
     wholeWordsOnly: true,
-    exceptions: [],
+    exceptions: ["fu", "fun"],
     keepFirstAndLastChar: false,
     customReplacement: null,
     replacePartialWords: false,

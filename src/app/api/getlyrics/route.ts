@@ -7,11 +7,17 @@ import getSongDuration from "@/app/utils/getSongDuration";
 import { youtubeTimeStringToSeconds } from "@/app/utils/youtubeTimeStringToSeconds";
 
 interface sentData {
-  textInput: string;
+  searchtext: string;
 }
 export async function POST(request: NextRequest) {
+  function splitTextAtHyphens(inputText: string): string[] {
+    // Use a regular expression to split at hyphens with spaces around them and not if the name has hyphen
+    const splitResult = inputText.split(/ -- /);
+    return splitResult;
+  }
   const sentData: sentData = await request.json();
-  let query = sentData.textInput.split("-");
+  // let query = sentData.textInput.split("-");
+  let query = splitTextAtHyphens(sentData.searchtext);
 
   const options = {
     apiKey: process.env.NEXT_PUBLIC_GENIUS_KEY,
@@ -19,6 +25,13 @@ export async function POST(request: NextRequest) {
     artist: query[0].trim(),
     optimizeQuery: true,
   };
+  //if options.title or options.artist are empty return nill
+  if (options.title === "" || options.artist === "") {
+    return NextResponse.json({
+      error: "artist or song name was empty",
+      songLyrics: null,
+    });
+  }
 
   try {
     let song: ISong = await getSong(options);
