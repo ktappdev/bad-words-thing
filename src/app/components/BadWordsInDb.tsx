@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-
+export const dynamic = 'force-dynamic'
 const BadWordsInDb: React.FC = () => {
   const [bwcount, setbwcount] = useState<number | null>(null);
 
