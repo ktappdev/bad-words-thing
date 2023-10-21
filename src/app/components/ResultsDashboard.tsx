@@ -87,6 +87,7 @@ const ResultsDashboard = async () => {
                   Lyrics
                 </Link>
               </div>
+              <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Search again</Link>
             </div>
           </div>
 
