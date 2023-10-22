@@ -7,7 +7,7 @@ import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ISong } from "../utils/interfaces";
-import  BadWordsInDb  from "./BadWordsInDb";
+import BadWordsInDb from "./BadWordsInDb";
 interface IResponse {
   data: {
     songLyrics: string;
@@ -100,7 +100,7 @@ const Main: React.FC = () => {
 
   return (
     <div className="container mx-auto p-2 flex flex-col items-center w-full">
-      <div className="text-center pt-2">
+      <div className="text-center ">
         <h1 className="text-5xl font-extrabold text-pink-600 hover:text-pink-800 transform transition-transform hover:scale-105">Bad Words Thing</h1>
         <h1 className="text-4xl font-semibold text-blue-500 hover:text-blue-700 transform transition-transform hover:scale-105">by Lugetech</h1>
         <p className="text-sm md:text-lg text-gray-600 mt-4">
@@ -158,7 +158,7 @@ const Main: React.FC = () => {
           Cancel
         </button>
       </form>
-      <footer className="mt-4">
+      <footer className="mt-2">
         <p className="text-sm text-gray-600 text-center">
           <BadWordsInDb />
         </p>

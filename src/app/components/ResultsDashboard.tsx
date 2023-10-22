@@ -53,7 +53,7 @@ const ResultsDashboard = () => {
   songInfo.curseWords.linesToEdit.shift();
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-100 flex items-start justify-center">
       <div className="container mx-auto p-4">
         <div
           id="main_card"
@@ -70,8 +70,11 @@ const ResultsDashboard = () => {
                 <h3 className="md:text-lg font-bold ">Word count:</h3>
                 <p>{wordCount_Atom}</p>
               </div>
+              <div className="mt-4">
+                <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Back</Link>
+              </div>
             </div>
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center ">
               <Image
                 src={song_Atom?.albumArt!}
                 alt="album art"
@@ -87,12 +90,12 @@ const ResultsDashboard = () => {
                   Lyrics
                 </Link>
               </div>
-              <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Back</Link>
+              {/* <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Back</Link> */}
             </div>
           </div>
 
           <div className="mb-4">
-            <h3 className="md:text-lg font-bold mb-2">Bad words to edit:</h3>
+            <h3 className="md:text-lg font-bold m-1">Bad words to edit:</h3>
             <ul>
               {songInfo.curseWords.linesToEdit.map((lyric: any, index) => (
                 <li
