@@ -19,7 +19,7 @@ interface IParam {
   badWords: string;
 }
 
-const ResultsDashboard = async () => {
+const ResultsDashboard = () => {
   const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
   const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
@@ -87,7 +87,7 @@ const ResultsDashboard = async () => {
                   Lyrics
                 </Link>
               </div>
-              <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Search again</Link>
+              <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Back</Link>
             </div>
           </div>
 
