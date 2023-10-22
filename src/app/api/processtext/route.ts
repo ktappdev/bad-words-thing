@@ -1,13 +1,18 @@
 // Importing necessary modules and packages
-import { clean } from "profanity-cleaner";
+// import { clean } from "profanity-cleaner";
 import { NextResponse, NextRequest } from "next/server";
 import identifierOccurrences from "@/app/utils/identifierOccurrences";
 // import { badWordsArray } from "@/app/utils/badWords";
 import { getBadWordsFromDb } from "@/app/utils/getBadWordsFromDb";
+import processTextOperations from "@/app/utils/processTextOperations";
+import { percentageToTime } from "@/app/utils/percentageToTime";
 
 interface sentData {
-  textAreaInput?: string;
-  lyrics?: string;
+  packageToProcess: {
+    lyrics: string;
+    songDuration: number;
+    lyricsWordCount: number;
+  };
 }
 export async function POST(request: NextRequest) {
   const sentData: sentData = await request.json();
@@ -15,21 +20,48 @@ export async function POST(request: NextRequest) {
   const badWordsArray = await getBadWordsFromDb();
 
   try {
-    const result: string = clean(sentData.lyrics, {
-      exceptions: ["fu"],
-      customBadWords: badWordsArray,
-      customReplacement: (badWord: string) => {
-        return ` ${identifier} ${badWord}`;
-      },
-    });
+    // console.log(
+    //   "this is duration number",
+    //   sentData.packageToProcess.songDuration
+    // );
+    if (!sentData.packageToProcess.lyrics === undefined) {
+      return NextResponse.json({
+        curseWords: 0,
+        data: null,
+        error: "No lyrics found",
+      });
+    }
+    const result: string = processTextOperations(
+      sentData.packageToProcess.lyrics!,
+      {
+        exceptions: ["fun", "funny", "funky"],
+        customBadWords: badWordsArray,
+        customReplacement: (badWord: string) => {
+          return ` ${identifier} ${badWord}`;
+        },
+      }
+    );
 
     let words = result.split(" ");
-    const processedSongLyrics = identifierOccurrences(words, identifier);
-    // console.log(result);
+    const count_badWords_percentageIntoSong = identifierOccurrences(
+      words,
+      identifier
+    );
+    const percentages = count_badWords_percentageIntoSong.linesToEdit.map(
+      (line) => line.percentageIntoSong
+    );
+    // console.log("this is percentages ", percentages);
+    let timeFromPercentage = percentageToTime(
+      percentages,
+      sentData.packageToProcess.songDuration,
+      sentData.packageToProcess.lyricsWordCount
+    );
 
+    // console.log(timeFromPercentage);
     return NextResponse.json({
-      curseWords: processedSongLyrics,
-      data: result,
+      curseWords: count_badWords_percentageIntoSong,
+      timeFromPercentage,
+      // data: result,
     });
   } catch (err) {
     return NextResponse.json({

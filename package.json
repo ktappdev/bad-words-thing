@@ -2,7 +2,7 @@
   "name": "bad-words-thing",
   "version": "0.1.0",
   "private": true,
-  "description": "My lifelong immersion in hip hop has desensitized me to curse words. Creating an app that scans lyrics for offensive language, I can save time by avoiding songs without inappropriate content while editing for our radio station.",
+  "description": "Bad Words Thing - A Next.js web app for detecting profanity in song lyrics.",
   "scripts": {
     "dev": "next dev",
     "build": "next build && prisma generate",
@@ -11,11 +11,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.21.14",
+    "@clerk/nextjs": "^4.22.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.13.7",
-    "@mui/material": "^5.13.7",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.1",
     "@prisma/client": "4.15.0",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
@@ -24,16 +24,17 @@
     "axios": "^1.4.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
-    "genius-lyrics-api": "^3.2.0",
+    "genius-lyrics-api-mod": "^3.2.1",
     "jotai": "^2.2.2",
     "next": "13.4.8",
     "postcss": "8.4.24",
-    "profanity-cleaner": "^0.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.47.0",
     "react-loader-spinner": "^5.3.4",
     "tailwindcss": "3.3.2",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "youtube-finder": "^1.0.1"
   },
   "devDependencies": {
     "@swc-jotai/react-refresh": "^0.0.8",
