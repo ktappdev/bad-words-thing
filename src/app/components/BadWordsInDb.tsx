@@ -1,13 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 const BadWordsInDb: React.FC = () => {
   const [bwcount, setbwcount] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/getbwcount');
+        const response = await fetch('/api/getbwcount', { cache: 'no-store' });
         const data = await response.json();
         setbwcount(data.data);
       } catch (error) {
