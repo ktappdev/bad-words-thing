@@ -40,7 +40,6 @@ export async function POST(request: NextRequest) {
     const lyricsWordCount = wordCount(editLyrics);
     const songDuration: string | undefined = await getSongDuration(song.title);
 
-    console.log('releaseDate', releaseDate);
     if (songDuration !== undefined) {
       let durationNumber = youtubeTimeStringToSeconds(songDuration);
       return NextResponse.json({

@@ -11,7 +11,6 @@ export async function GET(request: NextRequest) {
   //     error: "No words to delete.",
   //   });
   // }
-  console.log('getbwcount got hit')
 
   try {
     // const wordsInArray = sentData.textAreaInput?.split(",");

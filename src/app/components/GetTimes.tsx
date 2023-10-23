@@ -35,7 +35,6 @@ const GetTimes = async (param: { song: string }) => {
   );
 
   const songDuration: string = resData.data.items[0].contentDetails.duration;
-  console.log("Duration:", songDuration);
 
   return (
     // <Suspense fallback={<div>Loading...</div>}>

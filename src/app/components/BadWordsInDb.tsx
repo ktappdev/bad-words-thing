@@ -9,7 +9,6 @@ const BadWordsInDb: React.FC = () => {
       try {
         const response = await fetch('/api/getbwcount');
         const data = await response.json();
-        console.log(data.data)
         setbwcount(data.data);
       } catch (error) {
         console.error(error);

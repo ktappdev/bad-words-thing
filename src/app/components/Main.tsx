@@ -82,7 +82,6 @@ const Main: React.FC = () => {
         searchtext,
       });
 
-      console.log('response.data', response.data);
       setLyricsAtom(response.data.song.lyrics);
       let lyricsWordCount = response.data.wordCount;
       setWordCountAtom(lyricsWordCount);
