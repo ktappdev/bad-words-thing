@@ -15,6 +15,7 @@ interface IResponse {
     song: ISong;
     wordCount: number;
     songDuration: number;
+    releaseDate: string;
   };
 }
 
@@ -47,28 +48,41 @@ const Main: React.FC = () => {
 
   const handleTextInputSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    //quick content check
     if (textInput.trim() === "" || songName.trim() === "") {
       alert("Please enter a song name and artist name");
       return
     }
     const searchText = () => {
       if (textInput.length > 0 && songName.length > 0) {
-        return textInput + " -- " + songName;
+        return textInput + " -- " + songName; // i used double hyphens because some names would have hyphens in them, but hopefully not double
       }
       else {
-        return //cancel
+        return //not necesaary but can't hurt
       }
     }
-    const searchtext = searchText();
+    const searchtext = searchText(); //ok so this is the function that returns the song name and artist name
+    // update the ui
     setDisableButton(true);
     setButtonText("Please Wait...");
     setButtonColour(false);
     setDisableCancelButton(false);
+    // so this is tthe search endpoint, we send the artist and song name here and get back the lyrics.
+    // getlyrics endpoint goes like this:
+    /*
+    it splits the input text at double hyphens, retrieves data from the request, 
+    and sets options for a song search. If the title or artist options are empty, 
+    it returns an error response. Otherwise, it uses the options to retrieve a 
+    song and perform some operations on the lyrics and duration. Finally, 
+    it returns a JSON response with the song, word count, and duration information. 
+    If an error occurs, it returns an error response.
+    */
     try {
       const response: IResponse = await axios.post("/api/getlyrics", {
         searchtext,
       });
 
+      console.log('response.data', response.data);
       setLyricsAtom(response.data.song.lyrics);
       let lyricsWordCount = response.data.wordCount;
       setWordCountAtom(lyricsWordCount);

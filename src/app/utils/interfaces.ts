@@ -5,6 +5,7 @@ export interface ISong {
   url: string;
   lyrics: string;
   albumArt: string;
+  releaseDate: string;
 }
 
 export interface IUpdateDbRes {

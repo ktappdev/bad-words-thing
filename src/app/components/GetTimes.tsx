@@ -8,7 +8,6 @@ var client = youtube.createClient({
 });
 
 const GetTimes = async (param: { song: string }) => {
-  console.log(process.env.NEXT_PUBLIC_YOUTUBE_KEY);
 
   const params = {
     part: "snippet",

@@ -71,7 +71,7 @@ const ResultsDashboard = () => {
                 <p>{wordCount_Atom}</p>
               </div>
               <div className="mt-4">
-                <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Back</Link>
+                <Link href="/" className="my-2 text-blue-500 flex justify-start items-center "> Go Back</Link>
               </div>
             </div>
             <div className="flex flex-col items-center justify-center ">
@@ -82,7 +82,9 @@ const ResultsDashboard = () => {
                 height={180}
               ></Image>
               <div>
+                <p className="mt-1 text-xs text-gray-500">Release Date {song_Atom?.releaseDate}</p>
                 <Link
+                  className="mt-2 text-blue-500 flex justify-center items-center"
                   href={song_Atom?.url!}
                   rel="noopener noreferrer"
                   target="_blank"

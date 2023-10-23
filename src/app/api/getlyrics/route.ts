@@ -35,16 +35,19 @@ export async function POST(request: NextRequest) {
 
   try {
     let song: ISong = await getSong(options);
+    const releaseDate = song.releaseDate;
     const editLyrics = removeSquareBrackets(song.lyrics);
     const lyricsWordCount = wordCount(editLyrics);
     const songDuration: string | undefined = await getSongDuration(song.title);
 
+    console.log('releaseDate', releaseDate);
     if (songDuration !== undefined) {
       let durationNumber = youtubeTimeStringToSeconds(songDuration);
       return NextResponse.json({
         song: song,
         wordCount: lyricsWordCount,
         songDuration: durationNumber,
+        releaseDate: releaseDate
       });
     } else {
       let durationNumber: number = 0;
@@ -52,6 +55,7 @@ export async function POST(request: NextRequest) {
         song: song,
         wordCount: lyricsWordCount,
         songDuration: durationNumber,
+        releaseDate: releaseDate
       });
     }
   } catch (error) {
