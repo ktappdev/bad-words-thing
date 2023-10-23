@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     const releaseDate = song.releaseDate;
     const editLyrics = removeSquareBrackets(song.lyrics);
     const lyricsWordCount = wordCount(editLyrics);
-    const songDuration: string | undefined = await getSongDuration(song.title);
+    const songDuration: string | undefined = await getSongDuration(song.title); // future ken, if you ever need to drop the youtube feature. look here
 
     if (songDuration !== undefined) {
       let durationNumber = youtubeTimeStringToSeconds(songDuration);
