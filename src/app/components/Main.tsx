@@ -80,7 +80,7 @@ const Main: React.FC = () => {
     try {
       const response: IResponse = await axios.post("/api/getlyrics", {
         searchtext,
-      });
+      }); // here i also hit youtube to get song duration
 
       setLyricsAtom(response.data.song.lyrics);
       let lyricsWordCount = response.data.wordCount;
@@ -112,74 +112,85 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-2 flex flex-col items-center w-full">
-      <div className="text-center ">
-        <h1 className="text-5xl font-extrabold text-pink-600 hover:text-pink-800 transform transition-transform hover:scale-105">Bad Words Thing</h1>
-        <h1 className="text-4xl font-semibold text-blue-500 hover:text-blue-700 transform transition-transform hover:scale-105">by Lugetech</h1>
-        <p className="text-sm md:text-lg text-gray-600 mt-4">
+    <div className="container mx-auto flex w-full flex-col items-center p-2 ">
+      <div className="text-center md:w-1/2">
+        <h1 className="transform font-extrabold text-pink-600 transition-transform hover:scale-105 hover:text-pink-800 md:text-5xl">Bad Words Thing</h1>
+        <h1 className="transform font-semibold text-blue-500 transition-transform hover:scale-105 hover:text-blue-700 md:text-4xl">by Lugetech</h1>
+        <p className="mt-4 text-sm text-gray-600 md:text-lg">
           Your Song Lyrics Scanner for Radio-Friendly Tunes. Find those not-so-obvious words in songs that might not be radio-friendly. Not just the regular bad words.
         </p>
         <p className="text-xs text-gray-600">
           lugetechgy@gmail.com
         </p>
       </div>
-      <form className="mb-4 md:px-24 w-full" onSubmit={handleTextInputSubmit}>
-        <label className="block mt-2 font-bold text-gray-700">
-          Artist Name:
-        </label>
-        <input
-          // placeholder="Artist Name"
-          disabled={disableButton}
-          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none "
-          type="text"
-          value={textInput}
-          onChange={handleTextInputChange}
-        />
-        <label className="block mt-2 font-bold text-gray-700">
-          Song Title:
-        </label>
-        <input
-          // placeholder="Song Title"
-          disabled={disableButton}
-          className="w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:outline-none "
-          type="text"
-          value={songName}
-          onChange={handleSongNameChange}
-        />
-        <button
-          disabled={disableButton}
-          className={
-            buttonColour
-              ? "mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600"
-              : "mt-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
-          }
-        >
-          {buttonText}
-          {/* <SmallLoadingSpinner /> */}
-        </button>
-        <button
-          disabled={disableCancelButton}
-          type="button"
-          onClick={handleCancelButtonClick}
-          className={
-            !disableCancelButton
-              ? "mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
-              : "mt-2 ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:bg-gray-600"
-          }
-        // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
-        >
-          Cancel
-        </button>
-      </form>
-      <footer className="mt-2">
-        <p className="text-sm text-gray-600 text-center">
-          <BadWordsInDb />
-        </p>
-        <p className="text-sm text-gray-600">
-          © 2023 Lugetech. All rights reserved.
-        </p>
+      <div className="w-4xl  gap-2  md:mt-12 ">
+        <div className="w-full" id="main-content">
+          <div className="flex w-full gap-2 flex-col md:flex-row">
+            <form className="mb-4 md:flex-col md:w-1/2" onSubmit={handleTextInputSubmit}>
+              <label className="mt-2 block font-bold text-gray-700">
+                Artist Name:
+              </label>
+              <input
+                // placeholder="Artist Name"
+                disabled={disableButton}
+                className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none "
+                type="text"
+                value={textInput}
+                onChange={handleTextInputChange}
+              />
+              <label className="mt-2 block font-bold text-gray-700">
+                Song Title:
+              </label>
+              <input
+                // placeholder="Song Title"
+                disabled={disableButton}
+                className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none "
+                type="text"
+                value={songName}
+                onChange={handleSongNameChange}
+              />
+              <button
+                disabled={disableButton}
+                className={
+                  buttonColour
+                    ? "mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-600"
+                    : "mt-2 rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:bg-gray-600"
+                }
+              >
+                {buttonText}
+                {/* <SmallLoadingSpinner /> */}
+              </button>
+              <button
+                disabled={disableCancelButton}
+                type="button"
+                onClick={handleCancelButtonClick}
+                className={
+                  !disableCancelButton
+                    ? "ml-2 mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-600"
+                    : "ml-2 mt-2 rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:bg-gray-600"
+                }
+              // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
+              >
+                Cancel
+              </button>
+            </form>
+            <div className="flex flex-col w-full flex-wrap items-start justify-start rounded bg-orange-50 p-4 md:flex md:w-1/2">
+              <h1 className="flex text-center text-xl font-extrabold ">Previous Searches </h1>
+              <p className="flex w-full flex-wrap whitespace-normal text-start text-sm">TiaCorine - FreakyT (feat. Latto) Remix </p>
+            </div>
+          </div>
+          <footer className="mt-2">
+            <div className="text-center text-sm text-gray-600">
+              <BadWordsInDb />
+            </div>
+            <p className="text-sm text-gray-600">
+              © 2023 Lugetech. All rights reserved.
+            </p>
 
-      </footer>
+          </footer>
+        </div>
+
+      </div>
     </div>
   );
 };

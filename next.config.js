@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "images.genius.com",
-      "images.rapgenius.com",
-      "img.clerk.com",
-      "assets.genius.com",
+    remotePatterns: [
+      { hostname: "images.genius.com", protocol: 'https' },
+      { hostname: "images.rapgenius.com", protocol: 'https' },
+      { hostname: "img.clerk.com", protocol: 'https' },
+      { hostname: "assets.genius.com", protocol: 'https' },
     ],
-  },
+  }
 };
 
 module.exports = nextConfig;
