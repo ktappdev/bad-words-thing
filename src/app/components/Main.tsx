@@ -177,6 +177,7 @@ const Main: React.FC = () => {
             <div className="flex flex-col w-full flex-wrap items-start justify-start rounded bg-orange-50 p-4 md:flex md:w-1/2">
               <h1 className="flex text-center text-xl font-extrabold ">Previous Searches </h1>
               <p className="flex w-full flex-wrap whitespace-normal text-start text-sm">TiaCorine - FreakyT (feat. Latto) Remix </p>
+              <p className="flex w-full flex-wrap whitespace-normal text-start text-sm">Under construction... </p>
             </div>
           </div>
           <footer className="mt-2">
