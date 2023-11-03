@@ -120,7 +120,7 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto flex w-full flex-col items-center p-2 ">
+    <div className="container mx-auto flex w-full flex-col items-center p-2 min-h-screen">
       <div className="text-center md:w-1/2">
         <h1 className="transform font-extrabold text-pink-600 transition-transform hover:scale-105 hover:text-pink-800 md:text-5xl">Bad Words Thing</h1>
         <h1 className="transform font-semibold text-blue-500 transition-transform hover:scale-105 hover:text-blue-700 md:text-4xl">by Lugetech</h1>
@@ -132,7 +132,7 @@ const Main: React.FC = () => {
         </p>
       </div>
       <div className="w-4xl  gap-2  md:mt-12 ">
-        <div className="w-full" id="main-content">
+        <div className="w-full min-h-full" id="main-content">
           <div className="flex w-full gap-2 flex-col md:flex-row">
             <form className="mb-4 md:flex-col md:w-1/2" onSubmit={handleTextInputSubmit}>
               <label className="mt-2 block font-bold text-gray-700">
@@ -182,7 +182,7 @@ const Main: React.FC = () => {
                 Cancel
               </button>
             </form>
-            <div className="flex flex-col w-full flex-wrap items-start justify-start rounded bg-orange-50 p-4 md:flex md:w-1/2">
+            <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-orange-50 p-4 md:flex md:w-1/2">
               <h1 className="flex text-center text-xl font-extrabold ">Previous Searches </h1>
               <SearchedSongComponent />
             </div>
