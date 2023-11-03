@@ -39,3 +39,10 @@ interface YouTubeVideoId {
   kind: string;
   videoId: string;
 }
+
+export interface IlastThreeSongs {
+  id: string;
+  query: string;
+  badWords: number;
+  date: Date
+}
