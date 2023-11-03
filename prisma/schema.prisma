@@ -15,3 +15,9 @@ model BadWordsList {
   word   String  @unique
   colour String?
 }
+
+model SearchedWords {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  query    String
+  badWords Int
+}
