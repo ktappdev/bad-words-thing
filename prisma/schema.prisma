@@ -16,8 +16,9 @@ model BadWordsList {
   colour String?
 }
 
-model SearchedWords {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
+model SearchedSong {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
   query    String
   badWords Int
+  date     DateTime @default(now())
 }

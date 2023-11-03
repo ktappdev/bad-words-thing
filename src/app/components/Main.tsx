@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ISong } from "../utils/interfaces";
 import BadWordsInDb from "./BadWordsInDb";
+
 interface IResponse {
   data: {
     songLyrics: string;
@@ -96,6 +97,12 @@ const Main: React.FC = () => {
       // console.log(processedResponse.data);
       let res = processedResponse.data as unknown as ISongInfo;
       setSongInfo(res);
+      // write to the databaase
+      const addSearchedSongToDb = await axios.post("/api/addsearchedsong", {
+        badWords: res.curseWords.count,
+        songTitle: song.title,
+      });
+      // console.log("song added to db", addSearchedSongToDb)
       router.push("/results");
     } catch (error) {
     } finally {

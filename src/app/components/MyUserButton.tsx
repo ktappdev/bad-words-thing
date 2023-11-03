@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import { Avatar, makeStyles } from "@mui/material/";
+// import { Avatar, makeStyles } from "@mui/material/";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useClerk, useUser } from "@clerk/nextjs";
 import { SignInButton } from "@clerk/nextjs";
