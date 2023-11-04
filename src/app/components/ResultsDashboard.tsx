@@ -53,16 +53,16 @@ const ResultsDashboard = () => {
   songInfo.curseWords.linesToEdit.shift();
 
   const removeIdentifierAndStyleRed = (lyric: any) => {
-    const regex = /ADmCby4J (\w+)/g;
+    const regex = /ADmCby4J\s{1,3}(\w+)/g;
+
     let result = lyric;
     let match;
-
     while ((match = regex.exec(lyric)) !== null) {
       const word = match[1];
       result = result.replace(match[0], `<span class="text-red-500">${word}</span>`);
     }
-
-    return result;
+    return result.replace(/ADmCby4J/g, "")
+    // .replace(/ADmCby4J/g, "")
   };
 
   return (
