@@ -52,6 +52,19 @@ const ResultsDashboard = () => {
 
   songInfo.curseWords.linesToEdit.shift();
 
+  const removeIdentifierAndStyleRed = (lyric: any) => {
+    const regex = /ADmCby4J (\w+)/g;
+    let result = lyric;
+    let match;
+
+    while ((match = regex.exec(lyric)) !== null) {
+      const word = match[1];
+      result = result.replace(match[0], `<span class="text-red-500">${word}</span>`);
+    }
+
+    return result;
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-start justify-center">
       <div className="container mx-auto p-4">
@@ -107,7 +120,9 @@ const ResultsDashboard = () => {
                   <Suspense fallback={<div>...</div>}>
                     <span>{songInfo.timeFromPercentage[index]}</span>
                   </Suspense>
-                  <span>{lyric.badWords}</span>
+                  <span
+                    dangerouslySetInnerHTML={{ __html: removeIdentifierAndStyleRed(lyric.badWords) }}
+                  />
                 </li>
               ))}
             </ul>

@@ -43,7 +43,6 @@ export async function POST(request: NextRequest) {
     );
 
     let words = result.split(" ");
-    console.log(words)
     const count_badWords_percentageIntoSong = identifierOccurrences(
       words,
       identifier
