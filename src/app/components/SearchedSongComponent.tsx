@@ -18,7 +18,7 @@ const SearchedSongComponent = () => {
   }, [])
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center w-full">
       {songs.map((song) => (
         <div className="flex flex-col items-center justify-center p-1  bg-white w-full mb-2 border-b-2" key={song.id}>
           <Link href={`/search/${song.query}`}>

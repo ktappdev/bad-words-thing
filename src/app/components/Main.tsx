@@ -145,6 +145,9 @@ const Main: React.FC = () => {
                 type="text"
                 value={textInput}
                 onChange={handleTextInputChange}
+                autoComplete="off"
+                required
+                autoFocus
               />
               <label className="mt-2 block font-bold text-gray-700">
                 Song Title:
@@ -156,6 +159,8 @@ const Main: React.FC = () => {
                 type="text"
                 value={songName}
                 onChange={handleSongNameChange}
+                autoComplete="off"
+                required
               />
               <button
                 disabled={disableButton}
@@ -182,7 +187,7 @@ const Main: React.FC = () => {
                 Cancel
               </button>
             </form>
-            <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-orange-50 p-4 md:flex md:w-1/2">
+            <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-orange-50 p-2 md:flex md:w-1/2">
               <h1 className="flex text-center text-xl font-extrabold ">Previous Searches </h1>
               <SearchedSongComponent />
             </div>
@@ -191,7 +196,7 @@ const Main: React.FC = () => {
             <div className="text-center text-sm text-gray-600">
               <BadWordsInDb />
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-xs text-center text-gray-400">
               © 2023 Lugetech. All rights reserved.
             </p>
 
