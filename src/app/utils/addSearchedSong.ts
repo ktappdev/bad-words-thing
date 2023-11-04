@@ -4,7 +4,6 @@ export async function addSearchedSong(songTitle: string, badWordCount: number): 
   success: boolean;
 }> {
   try {
-    console.log("songInfo", songTitle)
     await prisma.searchedSong.create({
       data: {
         query: songTitle,
