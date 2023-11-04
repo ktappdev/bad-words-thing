@@ -23,12 +23,12 @@ export default function processTextOperations(
     placeholder: "*",
     caseSensitive: false,
     wholeWordsOnly: true,
-    exceptions: ["fu", "fun"],
+    exceptions: [],
     keepFirstAndLastChar: false,
     customReplacement: null,
     replacePartialWords: false,
     includePunctuation: false,
-    minimumWordLength: 2,
+    minimumWordLength: 3,
     customMatch: null,
     customBadWords: [],
   };
@@ -83,9 +83,8 @@ export default function processTextOperations(
 
     // Keep the first and last characters of the word
     if (option.keepFirstAndLastChar) {
-      return `${match[0]}${option.placeholder.repeat(match.length - 2)}${
-        match[match.length - 1]
-      }`;
+      return `${match[0]}${option.placeholder.repeat(match.length - 2)}${match[match.length - 1]
+        }`;
     }
 
     return "x";

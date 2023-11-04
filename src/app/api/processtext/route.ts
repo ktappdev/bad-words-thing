@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     const result: string = processTextOperations(
       sentData.packageToProcess.lyrics!,
       {
-        exceptions: ["fun", "funny", "funky"],
+        exceptions: ["fun", "funny", "funky", "were"],
         customBadWords: badWordsArray,
         customReplacement: (badWord: string) => {
           return ` ${identifier} ${badWord}`;
