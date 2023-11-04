@@ -22,7 +22,7 @@ export async function addNewWordsToDb(words: string[]): Promise<{
 
       await prisma.badWordsList.create({
         data: {
-          word: word,
+          word: String(word).trim(),
         },
       });
 
