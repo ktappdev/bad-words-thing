@@ -6,6 +6,7 @@ const nextConfig = {
       { hostname: "images.rapgenius.com", protocol: 'https' },
       { hostname: "img.clerk.com", protocol: 'https' },
       { hostname: "assets.genius.com", protocol: 'https' },
+      { hostname: "s3.amazonaws.com", protocol: 'https' },
     ],
   }
 };

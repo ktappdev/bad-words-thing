@@ -16,6 +16,7 @@ export async function POST(request: NextRequest) {
     return splitResult;
   }
   const sentData: sentData = await request.json();
+  // console.log(sentData);
   // let query = sentData.textInput.split("-");
   let query = splitTextAtHyphens(sentData.searchtext);
 

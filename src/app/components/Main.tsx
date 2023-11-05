@@ -121,9 +121,9 @@ const Main: React.FC = () => {
 
   return (
     <div className="container mx-auto flex w-full flex-col items-center p-2 min-h-screen">
-      <div className="text-center md:w-1/2">
-        <h1 className="transform font-extrabold text-pink-600 transition-transform hover:scale-105 hover:text-pink-800 md:text-5xl">Bad Words Thing</h1>
-        <h1 className="transform font-semibold text-blue-500 transition-transform hover:scale-105 hover:text-blue-700 md:text-4xl">by Lugetech</h1>
+      <div className="text-center md:w-3/4">
+        <h1 className="transform font-extrabold text-pink-600 transition-transform hover:scale-105 hover:text-pink-800 md:text-3xl">Bad Words Thing</h1>
+        <h1 className="transform font-semibold text-blue-500 transition-transform hover:scale-105 hover:text-blue-700 md:text-3xl">by Lugetech</h1>
         <p className="mt-4 text-sm text-gray-600 md:text-lg">
           Your Song Lyrics Scanner for Radio-Friendly Tunes. Find those not-so-obvious words in songs that might not be radio-friendly. Not just the regular bad words.
         </p>
