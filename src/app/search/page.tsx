@@ -35,10 +35,6 @@ export default function SearchBar({ searchParams }: SearchParamsProps) {
   const [lyrics_Atom, setLyricsAtom] = useAtom(lyricsAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
   const [song_Atom, setSongAtom] = useAtom(songAtom);
-  const [disableButton, setDisableButton] = useState<boolean>(false);
-  const [disableCancelButton, setDisableCancelButton] = useState<boolean>(true);
-  const [buttonText, setButtonText] = useState<string>("Submit");
-  const [buttonColour, setButtonColour] = useState<boolean>(true);
 
   const search = useSearchParams().get('q');
 
@@ -69,7 +65,6 @@ export default function SearchBar({ searchParams }: SearchParamsProps) {
         router.push("/results");
       } catch (error) {
       } finally {
-        setDisableCancelButton(false);
       }
 
     }
@@ -79,7 +74,7 @@ export default function SearchBar({ searchParams }: SearchParamsProps) {
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="text-3xl font-bold">Compiling data... </h1>
-      <p className="text-2xl font-bold">for "{search}"</p>
+      <p className="text-2xl font-bold">for {search}</p>
     </div>
   );
 }
