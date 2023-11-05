@@ -30,7 +30,6 @@ export default function SearchBar({ searchParams }: SearchParamsProps) {
   const router = useRouter();
   const [textInput, setTextInput] = useState("");
   const [songName, setSongName] = useState("");
-  // const [textAreaInput, setTextAreaInput] = useState("");
   const [songInfo, setSongInfo] = useAtom(songData);
   const [lyrics_Atom, setLyricsAtom] = useAtom(lyricsAtom);
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
