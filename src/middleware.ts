@@ -10,6 +10,7 @@ export default authMiddleware({
     "/api/getlyrics",
     "/api/processtext",
     "/api/getbwcount",
+    "/api/addsearchedsong",
     "/sign-in",
     "/sign-up",
   ],
