@@ -28,7 +28,7 @@ const ResultsDashboard = () => {
     return (
       <div className="flex flex-col items-center justify-center  bg-gray-100">
         {song_Atom?.title ? (
-          <div>
+          <div className="flex flex-col items-center justify-center">
             {song_Atom?.title} is clean -
             <Link
               href={song_Atom?.url!}
@@ -37,6 +37,8 @@ const ResultsDashboard = () => {
             >
               Click here for lyrics
             </Link>
+            <Image src={song_Atom?.albumArt!} alt={song_Atom?.title!}
+              width={300} height={300} />
           </div>
         ) : (
           <p className="text-red-400">
