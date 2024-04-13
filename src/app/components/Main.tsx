@@ -53,16 +53,15 @@ const Main: React.FC = () => {
     //quick content check
     if (textInput.trim() === "" || songName.trim() === "") {
       alert("Please enter a song name and artist name");
-      return
+      return;
     }
     const searchText = () => {
       if (textInput.length > 0 && songName.length > 0) {
         return textInput + " -- " + songName; // i used double hyphens because some names would have hyphens in them, but hopefully not double
+      } else {
+        return; //not necesaary but can't hurt
       }
-      else {
-        return //not necesaary but can't hurt
-      }
-    }
+    };
     const searchtext = searchText(); //ok so this is the function that returns the song name and artist name
     // update the ui
     setDisableButton(true);
@@ -121,20 +120,27 @@ const Main: React.FC = () => {
 
   return (
     <div className="container mx-auto flex w-full flex-col items-center p-2 min-h-screen">
-      <div className="text-center md:w-3/4">
-        <h1 className="transform font-extrabold text-pink-600 transition-transform hover:scale-105 hover:text-pink-800 md:text-3xl">Bad Words Thing</h1>
-        <h1 className="transform font-semibold text-blue-500 transition-transform hover:scale-105 hover:text-blue-700 md:text-3xl">by Lugetech</h1>
-        <p className="mt-4 text-sm text-gray-600 md:text-lg">
-          Your Song Lyrics Scanner for Radio-Friendly Tunes. Find those not-so-obvious words in songs that might not be radio-friendly. Not just the regular bad words.
+      <div className="text-center md:w-3/4 mx-auto py-4">
+        <h1 className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-800 transition-transform hover:scale-105 p-4 text-5xl md:text-8xl">
+          Bad Words Thing
+        </h1>
+        <h1 className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-700 transition-transform hover:scale-105 md:text-3xl">
+          by Lugetech
+        </h1>
+        <p className="mt-4 text-gray-600 md:text-lg">
+          Your Song Lyrics Scanner for Radio-Friendly Tunes. Find those
+          not-so-obvious words in songs that might not be radio-friendly. Not
+          just the regular bad words.
         </p>
-        <p className="text-xs text-gray-600">
-          lugetechgy@gmail.com
-        </p>
+        <p className="text-sm text-gray-500">lugetechgy@gmail.com</p>
       </div>
       <div className="w-4xl  gap-2  md:mt-12 ">
         <div className="w-full min-h-full" id="main-content">
           <div className="flex w-full gap-2 flex-col md:flex-row">
-            <form className="mb-4 md:flex-col md:w-1/2" onSubmit={handleTextInputSubmit}>
+            <form
+              className="mb-4 md:flex-col md:w-1/2"
+              onSubmit={handleTextInputSubmit}
+            >
               <label className="mt-2 block font-bold text-gray-700">
                 Artist Name:
               </label>
@@ -182,13 +188,15 @@ const Main: React.FC = () => {
                     ? "ml-2 mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-600"
                     : "ml-2 mt-2 rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:bg-gray-600"
                 }
-              // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
+                // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
               >
                 Cancel
               </button>
             </form>
             <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-orange-50 p-2 md:flex md:w-1/2">
-              <h1 className="flex text-center text-xl font-extrabold ">Previous Searches </h1>
+              <h1 className="flex text-center text-xl font-extrabold ">
+                Previous Searches{" "}
+              </h1>
               <SearchedSongComponent />
             </div>
           </div>
@@ -199,10 +207,8 @@ const Main: React.FC = () => {
             <p className="text-xs text-center text-gray-400">
               © 2023 Lugetech. All rights reserved.
             </p>
-
           </footer>
         </div>
-
       </div>
     </div>
   );
