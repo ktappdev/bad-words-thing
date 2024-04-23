@@ -127,10 +127,9 @@ const Main: React.FC = () => {
         <h1 className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-700 transition-transform hover:scale-105 md:text-3xl">
           by Lugetech
         </h1>
-        <p className="mt-4 text-gray-600 md:text-lg">
-          Your Song Lyrics Scanner for Radio-Friendly Tunes. Find those
-          not-so-obvious words in songs that might not be radio-friendly. Not
-          just the regular bad words.
+        <p className="mt-4 text-gray-600 md:text-lg md:w-96 mx-auto">
+          Find those not-so-obvious words in songs that might not be
+          radio-friendly. Not just the regular bad words.
         </p>
         <p className="text-sm text-gray-500">lugetechgy@gmail.com</p>
       </div>
