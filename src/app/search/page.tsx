@@ -1,5 +1,5 @@
-'use client';
-import { useSearchParams } from 'next/navigation';
+"use client";
+import { useSearchParams } from "next/navigation";
 
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useAtom } from "jotai";
@@ -8,8 +8,7 @@ import { lyricsAtom } from "../store/store";
 import { ISongInfo } from "../store/store";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { ISong } from '../utils/interfaces';
-
+import { ISong } from "../utils/interfaces";
 
 interface SearchParamsProps {
   searchParams: URLSearchParams;
@@ -35,16 +34,16 @@ export default function SearchBar({ searchParams }: SearchParamsProps) {
   const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
   const [song_Atom, setSongAtom] = useAtom(songAtom);
 
-  const search = useSearchParams().get('q');
+  const search = useSearchParams().get("q");
 
   useEffect(() => {
     async function fetchData() {
       const spl = search!.split(/\s+by\s+/);
-      const searchtext = spl![1] + " -- " + spl![0]
+      const searchtext = spl![1] + " -- " + spl![0];
       try {
         const response: IResponse = await axios.post("/api/getlyrics", {
           searchtext,
-        }); // here i also hit youtube to get song duration
+        }); // here i also hit youtube to get song duration - april 24 i disabled youtube
 
         setLyricsAtom(response.data.song.lyrics);
         let lyricsWordCount = response.data.wordCount;
@@ -65,7 +64,6 @@ export default function SearchBar({ searchParams }: SearchParamsProps) {
       } catch (error) {
       } finally {
       }
-
     }
     fetchData();
   });

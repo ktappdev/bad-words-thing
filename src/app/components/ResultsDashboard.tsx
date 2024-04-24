@@ -10,7 +10,8 @@ interface singInfo {
     count: number;
     linesToEdit: string[];
   };
-  timeFromPercentage: string[];
+  // timeFromPercentage: string[];
+  percentages: string[];
   error?: string;
 }
 
@@ -37,8 +38,12 @@ const ResultsDashboard = () => {
             >
               Click here for lyrics
             </Link>
-            <Image src={song_Atom?.albumArt!} alt={song_Atom?.title!}
-              width={300} height={300} />
+            <Image
+              src={song_Atom?.albumArt!}
+              alt={song_Atom?.title!}
+              width={300}
+              height={300}
+            />
           </div>
         ) : (
           <p className="text-red-400">
@@ -61,9 +66,12 @@ const ResultsDashboard = () => {
     let match;
     while ((match = regex.exec(lyric)) !== null) {
       const word = match[1];
-      result = result.replace(match[0], `<span class="text-red-500">${word}</span>`);
+      result = result.replace(
+        match[0],
+        `<span class="text-red-500">${word}</span>`,
+      );
     }
-    return result.replace(/ADmCby4J/g, "")
+    return result.replace(/ADmCby4J/g, "");
     // .replace(/ADmCby4J/g, "")
   };
 
@@ -74,19 +82,25 @@ const ResultsDashboard = () => {
           id="main_card"
           className="flrx flex-col bg-white shadow-lg rounded-lg p-6"
         >
-          <div className="flex flex-row flex-1 w-full justify-center gap-4">
+          <div className="flex flex-row flex-1 w-full justify-center gap-2">
             <div>
-              <h2 className="text-2xl font-bold mb-4">{song_Atom?.title}</h2>
+              <h2 className="md:text-xl font-bold mb-2">{song_Atom?.title}</h2>
               <div>
-                <h3 className="md:text-lg font-bold ">Bad Words:</h3>
-                <p>{songInfo.curseWords?.count}</p>
+                <h3 className="md:text-lg">Bad Words:</h3>
+                <p className="text-sm">{songInfo.curseWords?.count}</p>
               </div>
               <div>
-                <h3 className="md:text-lg font-bold ">Word count:</h3>
-                <p>{wordCount_Atom}</p>
+                <h3 className="md:text-lg ">Word count:</h3>
+                <p className="text-sm">{wordCount_Atom}</p>
               </div>
-              <div className="mt-4">
-                <Link href="/" className="my-2 text-blue-500 flex justify-start items-center "> Go Back</Link>
+              <div className="mt-2">
+                <Link
+                  href="/"
+                  className="my-2 text-blue-500 flex justify-start items-center "
+                >
+                  {" "}
+                  Go Back
+                </Link>
               </div>
             </div>
             <div className="flex flex-col items-center justify-center ">
@@ -97,14 +111,16 @@ const ResultsDashboard = () => {
                 height={180}
               ></Image>
               <div>
-                <p className="mt-1 text-xs text-gray-500">Release Date {song_Atom?.releaseDate}</p>
+                <p className="mt-1 text-xs text-gray-500">
+                  Release Date {song_Atom?.releaseDate}
+                </p>
                 <Link
-                  className="mt-2 text-blue-500 flex justify-center items-center"
+                  className="mt-2 text-blue-500 flex justify-center items-center text-sm"
                   href={song_Atom?.url!}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  Lyrics
+                  see full lyrics
                 </Link>
               </div>
               {/* <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Back</Link> */}
@@ -112,19 +128,27 @@ const ResultsDashboard = () => {
           </div>
 
           <div className="mb-4">
-            <h3 className="md:text-lg font-bold m-1">Bad words to edit:</h3>
+            <h3 className="md:text-lg font-bold m-1">
+              % Into song | Bad words to edit:
+            </h3>
             <ul>
               {songInfo.curseWords.linesToEdit.map((lyric: any, index) => (
                 <li
                   key={index}
-                  className="flex items-center mb-2 border border-gray-300 rounded px-2 py-1 gap-2"
+                  className="flex items-center mb-2 border border-gray-100 rounded px-2 py-1 gap-2"
                 >
                   <Suspense fallback={<div>...</div>}>
-                    <span>{songInfo.timeFromPercentage[index]}</span>
+                    <div className="text-left text-sm md:text-md">
+                      <span>{songInfo.percentages[index]}% |</span>
+                    </div>
                   </Suspense>
-                  <span
-                    dangerouslySetInnerHTML={{ __html: removeIdentifierAndStyleRed(lyric.badWords) }}
-                  />
+                  <div className="flex-1 text-left text-sm md:text-base">
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: removeIdentifierAndStyleRed(lyric.badWords),
+                      }}
+                    />
+                  </div>
                 </li>
               ))}
             </ul>

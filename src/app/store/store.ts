@@ -6,7 +6,8 @@ export interface ISongInfo {
     count: number;
     linesToEdit: string[];
   };
-  timeFromPercentage: string[];
+  // timeFromPercentage: string[];
+  percentages: string[];
 }
 
 export const songData = atom<ISongInfo>({
@@ -14,7 +15,8 @@ export const songData = atom<ISongInfo>({
     count: 0,
     linesToEdit: [],
   },
-  timeFromPercentage: [],
+  // timeFromPercentage: [],
+  percentages: [],
 });
 
 export const lyricsAtom = atom<string>("");

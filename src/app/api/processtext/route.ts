@@ -39,28 +39,29 @@ export async function POST(request: NextRequest) {
         customReplacement: (badWord: string) => {
           return ` ${identifier} ${badWord}`;
         },
-      }
+      },
     );
 
     let words = result.split(" ");
     const count_badWords_percentageIntoSong = identifierOccurrences(
       words,
-      identifier
+      identifier,
     );
     const percentages = count_badWords_percentageIntoSong.linesToEdit.map(
-      (line) => line.percentageIntoSong
+      (line) => line.percentageIntoSong,
     );
     // console.log("this is percentages ", percentages);
-    let timeFromPercentage = percentageToTime(
-      percentages,
-      sentData.packageToProcess.songDuration,
-      sentData.packageToProcess.lyricsWordCount
-    );
+    // let timeFromPercentage = percentageToTime(
+    //   percentages,
+    //   sentData.packageToProcess.songDuration,
+    //   sentData.packageToProcess.lyricsWordCount,
+    // );
 
     // console.log(timeFromPercentage);
     return NextResponse.json({
       curseWords: count_badWords_percentageIntoSong,
-      timeFromPercentage,
+      // timeFromPercentage,
+      percentages,
       // data: result,
     });
   } catch (err) {
