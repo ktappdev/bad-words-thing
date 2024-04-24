@@ -35,19 +35,21 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    let song: ISong = await getSong(options);
+    let song: ISong = await getSong(options); // Get song from Genius
     const releaseDate = song.releaseDate;
     const editLyrics = removeSquareBrackets(song.lyrics);
     const lyricsWordCount = wordCount(editLyrics);
-    const songDuration: string | undefined = await getSongDuration(song.title); // future ken, if you ever need to drop the youtube feature. look here
-
+    // future ken, if you ever need to drop the youtube feature. look here
+    // April 24th 2024 - i decided to remove the youtube search but will just side step it
+    // const songDuration: string | undefined = await getSongDuration(song.title);
+    const songDuration: string | undefined = undefined;
     if (songDuration !== undefined) {
       let durationNumber = youtubeTimeStringToSeconds(songDuration);
       return NextResponse.json({
         song: song,
         wordCount: lyricsWordCount,
         songDuration: durationNumber,
-        releaseDate: releaseDate
+        releaseDate: releaseDate,
       });
     } else {
       let durationNumber: number = 0;
@@ -55,7 +57,7 @@ export async function POST(request: NextRequest) {
         song: song,
         wordCount: lyricsWordCount,
         songDuration: durationNumber,
-        releaseDate: releaseDate
+        releaseDate: releaseDate,
       });
     }
   } catch (error) {
