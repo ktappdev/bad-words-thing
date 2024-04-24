@@ -94,7 +94,6 @@ const Main: React.FC = () => {
       const processedResponse = await axios.post("/api/processtext", {
         packageToProcess,
       });
-      // console.log(processedResponse.data);
       let res = processedResponse.data as unknown as ISongInfo;
       setSongInfo(res);
       // write to the databaase
