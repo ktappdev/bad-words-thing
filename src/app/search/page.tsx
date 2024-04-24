@@ -69,9 +69,9 @@ export default function SearchBar({ searchParams }: SearchParamsProps) {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold">Compiling data... </h1>
-      <p className="text-2xl font-bold">for {search}</p>
+    <div className="flex flex-1 h-screen flex-col items-center justify-center">
+      <h1 className="text-xl">Compiling data... </h1>
+      <p className="text-lg">for {search}</p>
     </div>
   );
 }

@@ -135,18 +135,16 @@ const Main: React.FC = () => {
       </div>
       <div className="w-4xl  gap-2  md:mt-12 ">
         <div className="w-full min-h-full" id="main-content">
-          <div className="flex w-full gap-2 flex-col md:flex-row">
+          <div className="flex p-2 bg-gradient-to-r from-pink-600 to-blue-800 transition-transform w-full gap-2 flex-col md:flex-row sm:justify-center sm:items-center">
             <form
               className="mb-4 md:flex-col md:w-1/2"
               onSubmit={handleTextInputSubmit}
             >
-              <label className="mt-2 block font-bold text-gray-700">
-                Artist Name:
-              </label>
+              {/* <label className="mt-2 block text-gray-700">Artist Name:</label> */}
               <input
-                // placeholder="Artist Name"
+                placeholder="Artist Name"
                 disabled={disableButton}
-                className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none "
+                className="w-full rounded border mb-2 border-gray-300 p-2 focus:border-blue-500 focus:outline-none "
                 type="text"
                 value={textInput}
                 onChange={handleTextInputChange}
@@ -154,11 +152,9 @@ const Main: React.FC = () => {
                 required
                 autoFocus
               />
-              <label className="mt-2 block font-bold text-gray-700">
-                Song Title:
-              </label>
+              {/* <label className="mt-2 block text-gray-700">Song Title:</label> */}
               <input
-                // placeholder="Song Title"
+                placeholder="Song Title"
                 disabled={disableButton}
                 className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none "
                 type="text"
@@ -171,7 +167,7 @@ const Main: React.FC = () => {
                 disabled={disableButton}
                 className={
                   buttonColour
-                    ? "mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-600"
+                    ? "mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-600 shadow-lg"
                     : "mt-2 rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:bg-gray-600"
                 }
               >
@@ -184,7 +180,7 @@ const Main: React.FC = () => {
                 onClick={handleCancelButtonClick}
                 className={
                   !disableCancelButton
-                    ? "ml-2 mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-600"
+                    ? "ml-2 mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-600 shadow-lg"
                     : "ml-2 mt-2 rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:bg-gray-600"
                 }
                 // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
@@ -192,8 +188,8 @@ const Main: React.FC = () => {
                 Cancel
               </button>
             </form>
-            <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-orange-50 p-2 md:flex md:w-1/2">
-              <h1 className="flex text-center text-xl font-extrabold ">
+            <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-gradient-to-r from-pink-600 to-blue-800 transition-transform p-2 md:flex md:w-1/2">
+              <h1 className="flex text-center text-xl font-extrabold text">
                 Previous Searches{" "}
               </h1>
               <SearchedSongComponent />
