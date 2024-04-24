@@ -121,7 +121,7 @@ const Main: React.FC = () => {
   return (
     <div className="container mx-auto flex w-full flex-col items-center p-2 min-h-screen">
       <div className="text-center md:w-3/4 mx-auto py-4">
-        <h1 className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-800 transition-transform hover:scale-105 p-4 text-5xl md:text-8xl">
+        <h1 className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-800 transition-transform hover:scale-105 p-4 text-5xl md:text-7xl">
           Bad Words Thing
         </h1>
         <h1 className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-700 transition-transform hover:scale-105 md:text-3xl">
@@ -133,7 +133,7 @@ const Main: React.FC = () => {
         </p>
         <p className="text-sm text-gray-500">lugetechgy@gmail.com</p>
       </div>
-      <div className="w-4xl  gap-2  md:mt-12 ">
+      <div className="w-4xl  gap-2  md:mt-8 ">
         <div className="w-full min-h-full" id="main-content">
           <div className="flex p-2 bg-gradient-to-r from-pink-600 to-blue-800 transition-transform w-full gap-2 flex-col md:flex-row sm:justify-center sm:items-center">
             <form
