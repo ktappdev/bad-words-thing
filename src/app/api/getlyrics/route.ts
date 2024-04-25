@@ -3,7 +3,6 @@ import { removeSquareBrackets } from "@/app/utils/removeSquareBrackets";
 import { wordCount } from "@/app/utils/wordCount";
 import { getSong } from "genius-lyrics-api-mod";
 import { ISong } from "@/app/utils/interfaces";
-import getSongDuration from "@/app/utils/getSongDuration";
 import { youtubeTimeStringToSeconds } from "@/app/utils/youtubeTimeStringToSeconds";
 
 interface sentData {
@@ -16,8 +15,6 @@ export async function POST(request: NextRequest) {
     return splitResult;
   }
   const sentData: sentData = await request.json();
-  // console.log(sentData);
-  // let query = sentData.textInput.split("-");
   let query = splitTextAtHyphens(sentData.searchtext);
 
   const options = {

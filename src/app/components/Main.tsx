@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, Suspense } from "react";
 import { useAtom } from "jotai";
 import { songAtom, songData, wordCountAtom } from "../store/store";
 import { lyricsAtom } from "../store/store";
@@ -9,6 +9,7 @@ import axios from "axios";
 import { ISong } from "../utils/interfaces";
 import BadWordsInDb from "./BadWordsInDb";
 import SearchedSongComponent from "./SearchedSongComponent";
+import LoadingSpinner from "./LoadingSpinner";
 
 interface IResponse {
   data: {
@@ -81,7 +82,7 @@ const Main: React.FC = () => {
     try {
       const response: IResponse = await axios.post("/api/getlyrics", {
         searchtext,
-      }); // here i also hit youtube to get song duration
+      });
 
       setLyricsAtom(response.data.song.lyrics);
       let lyricsWordCount = response.data.wordCount;
@@ -97,7 +98,7 @@ const Main: React.FC = () => {
       let res = processedResponse.data as unknown as ISongInfo;
       setSongInfo(res);
       // write to the databaase
-      const addSearchedSongToDb = await axios.post("/api/addsearchedsong", {
+      await axios.post("/api/addsearchedsong", {
         badWords: res.curseWords.count,
         songTitle: song.title,
       });
@@ -191,7 +192,9 @@ const Main: React.FC = () => {
               <h1 className="flex text-center text-xl font-extrabold text">
                 Previous Searches{" "}
               </h1>
-              <SearchedSongComponent />
+              <Suspense fallback={<LoadingSpinner />}>
+                <SearchedSongComponent />
+              </Suspense>
             </div>
           </div>
           <footer className="mt-2">
