@@ -21,14 +21,14 @@ const SearchedSongComponent = () => {
     <div className="flex flex-col items-center justify-center w-full">
       {songs.map((song) => (
         <div
-          className="flex flex-col items-center justify-center p-1  bg-gradient-to-r from-pink-600 to-blue-800 transition-transform w-full mb-2 border border-gray-700 rounded-lg"
+          className="flex flex-col items-center justify-center p-1   transition-transform w-full mb-2 border border-gray-300 rounded-lg"
           key={song.id}
         >
           <Link href={`/search?q=${song.query}`}>
-            <p className="text-sm text-white">{song.query}</p>
+            <p className="text-sm text-gray-800">{song.query}</p>
           </Link>
-          <p className="text-xs text-white">Bad Words: {song.badWords}</p>
-          <p className="text-xs text-white font-thin">{song.date.toString()}</p>
+          <p className="text-xs text-gray-700">Bad Words: {song.badWords}</p>
+          <p className="text-xs text-gray-800 font-thin">{song.date.toString()}</p>
         </div>
       ))}
     </div>

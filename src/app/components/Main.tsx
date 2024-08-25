@@ -135,7 +135,7 @@ const Main: React.FC = () => {
       </div>
       <div className="w-4xl  gap-2  md:mt-8 ">
         <div className="w-full min-h-full" id="main-content">
-          <div className="flex p-2 bg-gradient-to-r from-pink-600 to-blue-800 transition-transform w-full gap-2 flex-col md:flex-row sm:justify-center sm:items-center">
+          <div className="flex p-2  transition-transform w-full gap-2 flex-col md:flex-row sm:justify-center sm:items-center">
             <form
               className="mb-4 md:flex-col md:w-1/2"
               onSubmit={handleTextInputSubmit}
@@ -183,12 +183,12 @@ const Main: React.FC = () => {
                     ? "ml-2 mt-2 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:bg-red-600 shadow-lg"
                     : "ml-2 mt-2 rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:bg-gray-600"
                 }
-                // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
+              // className="mt-2 ml-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:bg-red-600"
               >
                 Cancel
               </button>
             </form>
-            <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-gradient-to-r from-pink-600 to-blue-800 transition-transform p-2 md:flex md:w-1/2">
+            <div className="flex flex-col w-full flex-wrap items-center justify-center rounded bg-gray-200 transition-transform p-2 md:flex md:w-1/2">
               <h1 className="flex text-center text-xl font-extrabold text">
                 Previous Searches{" "}
               </h1>
