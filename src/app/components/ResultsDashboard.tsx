@@ -1,57 +1,79 @@
 "use client";
-import React, { Suspense, useState } from "react";
+
+import React, { Suspense } from "react";
 import { useAtom } from "jotai";
 import { songAtom, songData, wordCountAtom } from "../store/store";
 import { ISong } from "../utils/interfaces";
 import Image from "next/image";
 import Link from "next/link";
-interface singInfo {
+
+interface SongInfo {
   curseWords: {
     count: number;
     linesToEdit: string[];
   };
-  // timeFromPercentage: string[];
   percentages: string[];
   error?: string;
 }
 
-interface IParam {
-  percentageIntoSong: number;
-  badWords: string;
-}
-
 const ResultsDashboard = () => {
-  const [songInfo, setSongInfo] = useAtom<singInfo>(songData);
-  const [song_Atom, setSongAtom] = useAtom<ISong | null>(songAtom);
-  const [wordCount_Atom, setWordCountAtom] = useAtom(wordCountAtom);
+  const [songInfo] = useAtom<SongInfo>(songData);
+  const [song] = useAtom<ISong | null>(songAtom);
+  const [wordCount] = useAtom(wordCountAtom);
+
+  const removeIdentifierAndStyleRed = (lyric: string) => {
+    const regex = /ADmCby4J\s{1,3}(\w+)/g;
+    let result = lyric;
+    let match;
+    while ((match = regex.exec(lyric)) !== null) {
+      const word = match[1];
+      result = result.replace(
+        match[0],
+        `<span class="text-red-500 font-semibold">${word}</span>`,
+      );
+    }
+    return result.replace(/ADmCby4J/g, "");
+  };
 
   if (songInfo.curseWords?.count === 0) {
     return (
-      <div className="flex flex-col items-center justify-center  bg-gray-100">
-        {song_Atom?.title ? (
-          <div className="flex flex-col items-center justify-center">
-            {song_Atom?.title} is clean -
-            <Link
-              href={song_Atom?.url!}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Click here for lyrics
-            </Link>
-            <Image
-              src={song_Atom?.albumArt!}
-              alt={song_Atom?.title!}
-              width={300}
-              height={300}
-            />
-          </div>
-        ) : (
-          <p className="text-red-400">
-            Minor error - Did not find a song or something went wrong.
-          </p>
-        )}
-        <div className="mt-4">
-          <Link href="/">Go Back</Link>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 p-4">
+        <div className="bg-white rounded-xl shadow-xl p-8 max-w-md w-full text-center space-y-6">
+          {song?.title ? (
+            <>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Song is Clean! 🎉
+              </h2>
+              <div className="space-y-4">
+                <p className="text-lg text-gray-600">{song.title}</p>
+                <Image
+                  src={song.albumArt!}
+                  alt={song.title!}
+                  width={300}
+                  height={300}
+                  className="rounded-lg shadow-md mx-auto transition-transform hover:scale-105"
+                />
+                <Link
+                  href={song.url!}
+                  className="text-blue-500 hover:text-blue-600 underline block"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View Full Lyrics
+                </Link>
+              </div>
+            </>
+          ) : (
+            <p className="text-red-500">
+              Error: Could not find song information
+            </p>
+          )}
+          <Link
+            href="/"
+            className="inline-block mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            ← Back to Search
+          </Link>
         </div>
       </div>
     );
@@ -59,99 +81,99 @@ const ResultsDashboard = () => {
 
   songInfo.curseWords.linesToEdit.shift();
 
-  const removeIdentifierAndStyleRed = (lyric: any) => {
-    const regex = /ADmCby4J\s{1,3}(\w+)/g;
-
-    let result = lyric;
-    let match;
-    while ((match = regex.exec(lyric)) !== null) {
-      const word = match[1];
-      result = result.replace(
-        match[0],
-        `<span class="text-red-500">${word}</span>`,
-      );
-    }
-    return result.replace(/ADmCby4J/g, "");
-    // .replace(/ADmCby4J/g, "")
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100 flex items-start justify-center">
-      <div className="container mx-auto p-4">
-        <div
-          id="main_card"
-          className="flrx flex-col bg-white shadow-lg rounded-lg p-6"
-        >
-          <div className="flex flex-row flex-1 w-full justify-center gap-2">
-            <div>
-              <h2 className="md:text-xl font-bold mb-2">{song_Atom?.title}</h2>
-              <div>
-                <h3 className="md:text-lg">Bad Words:</h3>
-                <p className="text-sm">{songInfo.curseWords?.count}</p>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+          {/* Header Section */}
+          <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="space-y-2">
+                <h1 className="text-2xl md:text-3xl font-bold">
+                  {song?.title}
+                </h1>
+                <div className="flex gap-6">
+                  <div>
+                    <p className="text-sm opacity-80">Bad Words</p>
+                    <p className="text-xl font-bold">
+                      {songInfo.curseWords?.count}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm opacity-80">Total Words</p>
+                    <p className="text-xl font-bold">{wordCount}</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="md:text-lg ">Word count:</h3>
-                <p className="text-sm">{wordCount_Atom}</p>
-              </div>
-              <div className="mt-2">
-                <Link
-                  href="/"
-                  className="my-2 text-blue-500 flex justify-start items-center "
-                >
-                  {" "}
-                  Go Back
-                </Link>
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center ">
-              <Image
-                src={song_Atom?.albumArt!}
-                alt="album art"
-                width={180}
-                height={180}
-              ></Image>
-              <div>
-                <p className="mt-1 text-xs text-gray-500">
-                  Release Date {song_Atom?.releaseDate}
+              <div className="text-center">
+                <Image
+                  src={song?.albumArt!}
+                  alt="Album Art"
+                  width={150}
+                  height={150}
+                  className="rounded-lg shadow-lg transition-transform hover:scale-105"
+                />
+                <p className="mt-2 text-sm opacity-80">
+                  Released: {song?.releaseDate}
                 </p>
                 <Link
-                  className="mt-2 text-blue-500 flex justify-center items-center text-sm"
-                  href={song_Atom?.url!}
+                  href={song?.url!}
+                  className="mt-2 text-sm underline hover:text-blue-200"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  see full lyrics
+                  View Original Lyrics
                 </Link>
               </div>
-              {/* <Link href="/" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-600 ">Back</Link> */}
             </div>
           </div>
 
-          <div className="mb-4">
-            <h3 className="md:text-lg font-bold m-1">
-              % Into song | Bad words to edit:
-            </h3>
-            <ul>
+          {/* Content Section */}
+          <div className="p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              Lyrics Analysis
+            </h2>
+            <div className="space-y-3">
               {songInfo.curseWords.linesToEdit.map((lyric: any, index) => (
-                <li
+                <div
                   key={index}
-                  className="flex items-center mb-2 border border-gray-100 rounded px-2 py-1 gap-2"
+                  className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                 >
-                  <Suspense fallback={<div>...</div>}>
-                    <div className="text-left text-sm md:text-md">
-                      <span>{songInfo.percentages[index]}% |</span>
-                    </div>
-                  </Suspense>
-                  <div className="flex-1 text-left text-sm md:text-base">
+                  <div className="min-w-[60px] text-center">
+                    <span className="font-mono text-sm text-gray-600">
+                      {songInfo.percentages[index]}%
+                    </span>
+                  </div>
+                  <div className="flex-1">
                     <span
+                      className="text-gray-700"
                       dangerouslySetInnerHTML={{
                         __html: removeIdentifierAndStyleRed(lyric.badWords),
                       }}
                     />
                   </div>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="border-t border-gray-200 p-4">
+            <Link
+              href="/"
+              className="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back to Search
+            </Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-// components/SearchedSongComponent.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,32 +5,17 @@ import Link from "next/link";
 import { getLastThreeSearchedSongs } from "../utils/getLastThreeSearchedSongs";
 import { IlastThreeSongs } from "../utils/interfaces";
 
-const SearchedSongComponent = () => {
+const SearchedSongList = () => {
   const [songs, setSongs] = useState<IlastThreeSongs[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getLastThreeSongs = async () => {
-      try {
-        const songsData = await getLastThreeSearchedSongs();
-        setSongs(songsData);
-      } catch (error) {
-        console.error("Error fetching songs:", error);
-      } finally {
-        setIsLoading(false);
-      }
+      const songsData = await getLastThreeSearchedSongs();
+      setSongs(songsData);
     };
 
     getLastThreeSongs();
   }, []);
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-40">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
 
   if (songs.length === 0) {
     return (
@@ -119,4 +103,4 @@ const SearchedSongComponent = () => {
   );
 };
 
-export default SearchedSongComponent;
+export default SearchedSongList;
