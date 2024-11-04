@@ -71,11 +71,11 @@ export default function RootLayout({
             <div className="h-16" />{" "}
             {/* Adjust height to match header height */}
             <div className="pt-12">{children}</div>
-            <footer className="z-10 py-2 fixed bottom-0 left-0 right-0 text-sm flex justify-end items-center w-full bg-slate-100">
-              <div className="mx-4">
-                <Link href={"/admin"}>Admin</Link>
-              </div>
-            </footer>
+            {/* <footer className="z-10 py-2 fixed bottom-0 left-0 right-0 text-sm flex justify-end items-center w-full bg-slate-100"> */}
+            {/*   <div className="mx-4"> */}
+            {/*     <Link href={"/admin"}>Admin</Link> */}
+            {/*   </div> */}
+            {/* </footer> */}
           </div>
         </body>
       </html>
