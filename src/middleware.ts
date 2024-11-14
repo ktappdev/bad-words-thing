@@ -4,11 +4,12 @@ export default authMiddleware({
   publicRoutes: [
     "/",
     "/results",
-    "/admin",
     "/search",
     "/api/getlyrics",
     "/api/processtext",
     "/api/getbwcount",
+    "/api/removefromdb",
+    "/api/updatedb",
     "/api/addsearchedsong",
     "/sign-in",
     "/sign-up",
