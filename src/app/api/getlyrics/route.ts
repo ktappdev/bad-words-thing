@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     let song: ISong = await getSong(options); // Get song from Genius
     console.log(" Song found:", { 
       title: song.title, 
-      artist: song.artist,
+      artist: song.url,
       hasLyrics: !!song.lyrics,
       lyricsLength: song.lyrics?.length
     });
@@ -85,8 +85,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response);
   } catch (error) {
     console.error(" Error in getlyrics:", {
-      message: error.message,
-      stack: error.stack
+      message: error,
+      stack: error
     });
     return NextResponse.json({
       error: error,

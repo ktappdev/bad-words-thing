@@ -113,9 +113,7 @@ const Main: React.FC = () => {
       router.push("/results");
     } catch (error) {
       console.error("❌ Error details:", {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status
+        message: error,
       });
       alert("An error occurred while processing your request");
     } finally {
