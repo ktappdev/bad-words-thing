@@ -3,7 +3,7 @@
 import React, { useState, ChangeEvent, FormEvent, Suspense } from "react";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 // Components - Import directly, no dynamic import
 import BadWordsInDb from "./BadWordsInDb";
@@ -85,6 +85,14 @@ const Main: React.FC = () => {
       });
       console.log("📥 Received response from /api/getlyrics:", response.data);
 
+      if (response.data.error) {
+        throw new Error(response.data.error);
+      }
+
+      if (!response.data.song?.lyrics) {
+        throw new Error("No lyrics found for this song");
+      }
+
       setLyricsAtom(response.data.song.lyrics);
       let lyricsWordCount = response.data.wordCount;
       setWordCountAtom(lyricsWordCount);
@@ -93,7 +101,12 @@ const Main: React.FC = () => {
       let songDuration = response.data.songDuration;
       setSongAtom(song);
 
-      console.log("📦 Preparing package to process:", { lyrics: lyrics.substring(0, 50) + "...", songDuration, lyricsWordCount });
+      console.log("📦 Preparing package to process:", {
+        lyrics: lyrics.substring(0, 50) + "...",
+        songDuration,
+        lyricsWordCount,
+      });
+
       let packageToProcess = { lyrics, songDuration, lyricsWordCount };
       const processedResponse = await axios.post("/api/processtext", {
         packageToProcess,
@@ -104,7 +117,10 @@ const Main: React.FC = () => {
       setSongInfo(res);
 
       // Write to database
-      console.log("💾 Adding searched song to database:", { title: song.title, badWords: res.curseWords.count });
+      console.log("💾 Adding searched song to database:", {
+        title: song.title,
+        badWords: res.curseWords.count,
+      });
       await axios.post("/api/addsearchedsong", {
         badWords: res.curseWords.count,
         songTitle: song.title,
@@ -112,11 +128,33 @@ const Main: React.FC = () => {
 
       router.push("/results");
     } catch (error) {
+      const axiosError = error as AxiosError<{ error: string }>;
       console.error("❌ Error details:", {
-        message: error,
+        message: axiosError.message,
+        response: {
+          data: axiosError.response?.data,
+          status: axiosError.response?.status,
+          statusText: axiosError.response?.statusText,
+        },
       });
-      alert("An error occurred while processing your request");
+
+      let errorMessage = "An error occurred while processing your request";
+
+      if (axiosError.response?.status === 404) {
+        errorMessage = "Could not find this song. Please check the artist and song name.";
+      } else if (axiosError.response?.status === 503) {
+        errorMessage = "The lyrics service is currently unavailable. Please try again later.";
+      } else if (axiosError.response?.data?.error) {
+        errorMessage = axiosError.response.data.error;
+      } else if (axiosError.message === "Network Error") {
+        errorMessage = "Unable to connect to the server. Please check your internet connection.";
+      }
+
+      alert(errorMessage);
     } finally {
+      setDisableButton(false);
+      setButtonText("Submit");
+      setButtonColour(true);
       setDisableCancelButton(false);
     }
   };
