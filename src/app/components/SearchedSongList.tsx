@@ -91,12 +91,9 @@ const SearchedSongList = () => {
 
       {songs.length > 0 && (
         <div className="pt-2 text-center">
-          <Link
-            href="/history"
-            className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
-          >
-            View all searches →
-          </Link>
+          <span className="text-sm text-gray-600">
+            Last {songs.length} searches
+          </span>
         </div>
       )}
     </div>
