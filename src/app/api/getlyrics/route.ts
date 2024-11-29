@@ -11,11 +11,11 @@ interface sentData {
 
 export async function POST(request: NextRequest) {
   try {
-    function splitTextAtHyphens(inputText: string): string[] {
+    const splitTextAtHyphens = (inputText: string): string[] => {
       const splitResult = inputText.split(/ -- /);
       console.log(" Splitting search text:", { input: inputText, result: splitResult });
       return splitResult;
-    }
+    };
 
     const sentData: sentData = await request.json();
     console.log(" Received search request:", sentData);
@@ -64,7 +64,6 @@ export async function POST(request: NextRequest) {
 
     console.log(" Song found:", { 
       title: song.title, 
-      artist: song.artist,
       hasLyrics: true,
       lyricsLength: song.lyrics.length
     });
@@ -103,18 +102,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response);
   } catch (error) {
     console.error(" Error in getlyrics:", {
-      name: error.name,
-      message: error.message,
-      stack: error.stack,
+      stack: error
     });
 
-    // Determine if it's an API-related error
-    if (error.message?.includes('API') || error.message?.includes('network')) {
-      return NextResponse.json({
-        error: "Failed to connect to Genius API. Please try again later.",
-        songLyrics: null,
-      }, { status: 503 });
-    }
 
     return NextResponse.json({
       error: "An unexpected error occurred while fetching lyrics",
