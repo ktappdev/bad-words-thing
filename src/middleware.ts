@@ -13,6 +13,7 @@ export default authMiddleware({
     "/api/addsearchedsong",
     "/sign-in",
     "/sign-up",
+    "/history",
   ],
 });
 
