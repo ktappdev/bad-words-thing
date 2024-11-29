@@ -63,7 +63,9 @@ const Main: React.FC = () => {
 
     const searchText = () => {
       if (textInput.length > 0 && songName.length > 0) {
-        return textInput + " -- " + songName;
+        const searchString = textInput + " -- " + songName;
+        console.log("🔍 Search string created:", searchString);
+        return searchString;
       }
       return;
     };
@@ -77,9 +79,11 @@ const Main: React.FC = () => {
     setDisableCancelButton(false);
 
     try {
+      console.log("📤 Sending request to /api/getlyrics with searchtext:", searchtext);
       const response: IResponse = await axios.post("/api/getlyrics", {
         searchtext,
       });
+      console.log("📥 Received response from /api/getlyrics:", response.data);
 
       setLyricsAtom(response.data.song.lyrics);
       let lyricsWordCount = response.data.wordCount;
@@ -89,15 +93,18 @@ const Main: React.FC = () => {
       let songDuration = response.data.songDuration;
       setSongAtom(song);
 
+      console.log("📦 Preparing package to process:", { lyrics: lyrics.substring(0, 50) + "...", songDuration, lyricsWordCount });
       let packageToProcess = { lyrics, songDuration, lyricsWordCount };
       const processedResponse = await axios.post("/api/processtext", {
         packageToProcess,
       });
+      console.log("✨ Processed response:", processedResponse.data);
 
       let res = processedResponse.data as unknown as ISongInfo;
       setSongInfo(res);
 
       // Write to database
+      console.log("💾 Adding searched song to database:", { title: song.title, badWords: res.curseWords.count });
       await axios.post("/api/addsearchedsong", {
         badWords: res.curseWords.count,
         songTitle: song.title,
@@ -105,7 +112,11 @@ const Main: React.FC = () => {
 
       router.push("/results");
     } catch (error) {
-      console.error("Error processing request:", error);
+      console.error("❌ Error details:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
       alert("An error occurred while processing your request");
     } finally {
       setDisableCancelButton(false);
@@ -242,7 +253,7 @@ const Main: React.FC = () => {
         <footer className="mt-12 text-center text-gray-600">
           <div className="max-w-4xl mx-auto border-t border-gray-200 pt-6">
             <p className="text-sm">
-              © {new Date().getFullYear()} Bad Words Thing. All rights
+              {new Date().getFullYear()} Bad Words Thing. All rights
               reserved.
             </p>
             <p className="text-xs mt-2">Contact: lugetechgy@gmail.com</p>
